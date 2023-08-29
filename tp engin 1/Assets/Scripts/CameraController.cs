@@ -52,9 +52,6 @@ public class CameraController : MonoBehaviour
         m_distance = Vector3.Distance(m_objectToLookAt.position, m_camera.position);
         float scrollDelta = Input.mouseScrollDelta.y;
 
-        //TODO: Faire une vérification selon la distance la plus proche ou la plus éloignée
-        //Que je souhaite entre ma caméra et mon objet
-
         if (scrollDelta != 0)
         {
             float newDistance = m_distance - scrollDelta;
@@ -72,7 +69,6 @@ public class CameraController : MonoBehaviour
 
     private void MoveCameraInFrontOfObstructionFUpdate()
     {
-        // Bit shift the index of the layer (8) to get a bit mask
         int layerMask = 1 << 8;
 
         RaycastHit hit;
