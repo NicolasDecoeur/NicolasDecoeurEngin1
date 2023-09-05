@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FreeState : CharacterState
+public abstract class FreeState : CharacterState
 {
     public override void OnEnter()
     {

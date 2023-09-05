@@ -2,27 +2,27 @@
 public class CharacterState : IState
 {
     protected private CharacterControlerSM m_stateMachine;
-    public void OnStart(CharacterControlerSM stateMachine)
+    public virtual void OnStart(CharacterControlerSM stateMachine)
     {
         m_stateMachine = stateMachine;
     }
 
-    public void OnEnter()
+    public virtual void OnEnter()
     {
       
     }
 
-    public void OnExit()
+    public virtual void OnExit()
     {
        
     }
 
-    public void OnFixedUpdate()
+    public virtual void OnFixedUpdate()
     {
        
     }
 
-    public void OnUpdate()
+    public virtual void OnUpdate()
     {
        
     }
