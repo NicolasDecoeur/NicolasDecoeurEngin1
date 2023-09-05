@@ -18,4 +18,8 @@ public class GenericStateMachine : MonoBehaviour
     {
         m_currentState.OnUpdate();
     }
+    void FixedUpdate()
+    {
+        m_currentState.OnFixedUpdate();
+    }
 }
