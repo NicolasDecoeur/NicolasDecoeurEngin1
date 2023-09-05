@@ -7,15 +7,15 @@ public class CharacterControlerSM : MonoBehaviour
     public Rigidbody RB { get; private set; }
 
     private CharacterState m_currentState;
-    private List<CharacterState> m_possibleState;
+    private List<CharacterState> m_possibleStates;
 
     [field:SerializeField] public float AccelerationValue { get; private set; }
     [field: SerializeField] public float MaxVelocity { get; private set; }
 
     private void Awake()
     {
-        m_possibleState = new List<CharacterState>();
-        m_possibleState.Add(new FreeState());
+        m_possibleStates = new List<CharacterState>();
+        m_possibleStates.Add(new FreeState());
     }
 
     void Start()
@@ -23,11 +23,11 @@ public class CharacterControlerSM : MonoBehaviour
         Camera = Camera.main;
         RB = GetComponent<Rigidbody>();
 
-        foreach (CharacterState state in m_possibleState)
+        foreach (CharacterState state in m_possibleStates)
         {
             state.OnStart(this);
         }
-        m_currentState = m_possibleState[0];
+        m_currentState = m_possibleStates[0];
         m_currentState.OnEnter();
     }
     void Update()
