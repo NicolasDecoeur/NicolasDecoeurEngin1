@@ -17,13 +17,26 @@ public class CharacterControler : MonoBehaviour
     void FixedUpdate()
     {
         var vectorOnFloor = Vector3.ProjectOnPlane(m_Camera.transform.forward, Vector3.up);
-        
+      
         vectorOnFloor.Normalize();
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)) // up
         {
             m_rb.AddForce(vectorOnFloor * m_accelerationValue, ForceMode.Acceleration);
         }
+        if (Input.GetKey(KeyCode.S)) // down
+        {
+            m_rb.AddForce(vectorOnFloor * m_accelerationValue, ForceMode.Acceleration);
+        }
+        if (Input.GetKey(KeyCode.A)) // left
+        {
+            m_rb.AddForce(vectorOnFloor * m_accelerationValue, ForceMode.Acceleration);
+        }
+        if (Input.GetKey(KeyCode.D)) // right
+        {
+            m_rb.AddForce(vectorOnFloor * m_accelerationValue, ForceMode.Acceleration);
+        }
+
         if (m_rb.velocity.magnitude > m_maxVelocity)
         {
             m_rb.velocity = m_rb.velocity.normalized;
