@@ -4,10 +4,7 @@ public class FreeState : CharacterState
 {
     public override void OnEnter()
     {
-    }
-
-    public override void OnExit()
-    {       
+        Debug.Log("entre free state");
     }
 
     public override void OnUpdate()
@@ -48,6 +45,19 @@ public class FreeState : CharacterState
         //Avoir des vitesses de déplacements maximales différentes vers les côtés et vers l'arrière
         //Lorsqu'aucun input est mis, décélérer le personnage rapidement
 
-        Debug.Log(m_stateMachine.RB.velocity.magnitude);
+        //Debug.Log(m_stateMachine.RB.velocity.magnitude);
+    }
+    public override void OnExit()
+    {
+        Debug.Log("sortie free state");
+    }
+    public override bool CanEnter()
+    {
+
+        return true;
+    }
+    public override bool CanExit()
+    {
+        return true;
     }
 }
