@@ -8,6 +8,7 @@ public class CharacterControlerSM : MonoBehaviour
 
     private CharacterState m_currentState;
     private List<CharacterState> m_possibleStates;
+    [SerializeField] private CharacterFloorTrigger m_floorTrigger;
 
     [field:SerializeField] public float AccelerationValue { get; private set; }
     [field:SerializeField] public float MaxVelocity { get; private set; }
@@ -62,5 +63,9 @@ public class CharacterControlerSM : MonoBehaviour
                 return;
             }
         }
+    }
+    public bool IsInContactWithFloor()
+    {
+        return m_floorTrigger.IsOnFloor;
     }
 }
