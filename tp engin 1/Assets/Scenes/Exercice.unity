@@ -253,7 +253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_floorTrigger: {fileID: 671928215}
-  <AccelerationValue>k__BackingField: 22
+  <AccelerationFowardValue>k__BackingField: 50
+  <AccelerationSideValue>k__BackingField: 10
   <MaxVelocity>k__BackingField: 5
   <JumpItencity>k__BackingField: 350
 --- !u!1 &523247677
@@ -758,3 +759,4 @@ MonoBehaviour:
   m_clampingXRotationValues: {x: -20, y: 75}
   m_closePointToObject: 4
   m_farthestPointToObject: 20
+  m_cameraTarget: 0

@@ -13,25 +13,23 @@ public class FreeState : CharacterState
 
     public override void OnFixedUpdate()
     {
-        var vectorOnFloor = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward, Vector3.up);
-
-        vectorOnFloor.Normalize();
+        Vector3 movementVector = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W)) // up
         {
-            m_stateMachine.RB.AddForce(vectorOnFloor * m_stateMachine.AccelerationValue, ForceMode.Acceleration);
+            movementVector += Vector3.forward;
         }
         if (Input.GetKey(KeyCode.S)) // down
         {
-            m_stateMachine.RB.AddForce(vectorOnFloor * m_stateMachine.AccelerationValue, ForceMode.Acceleration);
+            movementVector -= Vector3.forward;
         }
         if (Input.GetKey(KeyCode.A)) // left
         {
-            m_stateMachine.RB.AddForce(vectorOnFloor * m_stateMachine.AccelerationValue, ForceMode.Acceleration);
+            movementVector -= Vector3.right;
         }
         if (Input.GetKey(KeyCode.D)) // right
         {
-            m_stateMachine.RB.AddForce(vectorOnFloor * m_stateMachine.AccelerationValue, ForceMode.Acceleration);
+            movementVector += Vector3.right;
         }
 
         if (m_stateMachine.RB.velocity.magnitude > m_stateMachine.MaxVelocity)
@@ -40,8 +38,17 @@ public class FreeState : CharacterState
             m_stateMachine.RB.velocity *= m_stateMachine.MaxVelocity;
         }
 
+        movementVector = movementVector.normalized; 
+
+        var vectorOnFloorForward = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward, Vector3.up);
+        vectorOnFloorForward.Normalize();
+        var vectorOnFloorRight = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.right, Vector3.up);
+        vectorOnFloorRight.Normalize();
+
+        m_stateMachine.RB.AddForce(vectorOnFloorForward * movementVector.z * m_stateMachine.AccelerationFowardValue, ForceMode.Acceleration);
+        m_stateMachine.RB.AddForce(vectorOnFloorRight * movementVector.x * m_stateMachine.AccelerationSideValue, ForceMode.Acceleration);
+
         //TODO 31 AOÛT:
-        //Appliquer les déplacements relatifs à la caméra dans les 3 autres directions
         //Avoir des vitesses de déplacements maximales différentes vers les côtés et vers l'arrière
         //Lorsqu'aucun input est mis, décélérer le personnage rapidement
 

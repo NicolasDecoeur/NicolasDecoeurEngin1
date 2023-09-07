@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector2 m_clampingXRotationValues = Vector2.zero;
     [SerializeField] private float m_closePointToObject = 3.92f;
     [SerializeField] private float m_farthestPointToObject = 10.0f;
+    [SerializeField] private float m_cameraTarget;
 
     private float m_distance = 0.0f;
 
