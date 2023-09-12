@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -9,8 +10,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float m_closePointToObject = 3.92f;
     [SerializeField] private float m_farthestPointToObject = 10.0f;
     [SerializeField] private float m_cameraTarget;
-
-    private float m_distance = 0.0f;
+    [SerializeField] private float m_smoothSpeed = 0.5f;
+    [SerializeField] private Vector3 m_desiredPosition = Vector3.zero;
+    [SerializeField] private float m_distance = 0.0f;
+    [SerializeField] private float m_distanceCamToTravel;
 
     // Update is called once per frame
     void Update()
@@ -50,22 +53,35 @@ public class CameraController : MonoBehaviour
 
     private void UpdateCameraScroll()
     {
-        m_distance = Vector3.Distance(m_objectToLookAt.position, m_camera.position);
+        m_distance = Vector3.Distance(m_camera.position, m_objectToLookAt.position);
         float scrollDelta = Input.mouseScrollDelta.y;
 
         if (scrollDelta != 0)
         {
-            float newDistance = m_distance - scrollDelta;
-
-            if (newDistance < m_closePointToObject || newDistance > m_farthestPointToObject)
-            {
-                Debug.Log("Trop proche ou trop loin de l'objet");
-                return;
-            }
-            //TODO: Lerp plutôt que d'effectuer immédiatement la translation
-            Vector3 direction = m_camera.position - m_objectToLookAt.position;
-            m_camera.position = m_objectToLookAt.position + direction.normalized * newDistance;
+            m_desiredPosition = new Vector3(0f, m_distance - scrollDelta, 0f);
         }
+
+        if (m_distance < m_closePointToObject || m_distance > m_farthestPointToObject)
+        {
+            m_distance = Mathf.Clamp(m_distance, m_closePointToObject, m_farthestPointToObject);
+            Debug.Log("Trop proche ou trop loin de l'objet");
+            return;
+        }
+    
+        // TODO: Lerp plutôt que d'effectuer immédiatement la translation
+
+        // faire le lerp
+        Vector3 lerpDirection = Vector3.Lerp(m_camera.position, m_desiredPosition, m_smoothSpeed);
+
+        // calculer la distance que la camera doit parcourire pour cette frame 
+        m_distanceCamToTravel = Vector3.Distance(lerpDirection, m_camera.position);
+
+        // apliquer le lerp a la camera 
+        m_camera.Translate(Vector3.forward * m_distanceCamToTravel, Space.Self);
+
+        // lerp - cam = dist       
+
+        //  Vector3 direction = m_camera.position - m_objectToLookAt.position;
     }
 
     private void MoveCameraInFrontOfObstructionFUpdate()
@@ -73,7 +89,7 @@ public class CameraController : MonoBehaviour
         int layerMask = 1 << 8;
 
         RaycastHit hit;
-       
+
         var vecteurdiff = transform.position - m_objectToLookAt.position;
         var distance = vecteurdiff.magnitude;
         if (Physics.Raycast(m_objectToLookAt.position, vecteurdiff, out hit, distance, layerMask))

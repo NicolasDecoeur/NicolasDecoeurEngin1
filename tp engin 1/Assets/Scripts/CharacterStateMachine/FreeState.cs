@@ -21,11 +21,11 @@ public class FreeState : CharacterState
         }
         if (Input.GetKey(KeyCode.S)) // down
         {
-            movementVector -= Vector3.forward;
+            movementVector += Vector3.back;
         }
         if (Input.GetKey(KeyCode.A)) // left
         {
-            movementVector -= Vector3.right;
+            movementVector += Vector3.left;
         }
         if (Input.GetKey(KeyCode.D)) // right
         {
@@ -41,7 +41,7 @@ public class FreeState : CharacterState
         movementVector = movementVector.normalized; 
 
         var vectorOnFloorForward = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward, Vector3.up);
-        vectorOnFloorForward.Normalize();
+        vectorOnFloorForward.Normalize(); 
         var vectorOnFloorRight = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.right, Vector3.up);
         vectorOnFloorRight.Normalize();
 
