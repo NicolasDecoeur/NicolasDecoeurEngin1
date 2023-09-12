@@ -5,15 +5,14 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform m_objectToLookAt;
     [SerializeField] private Transform m_camera;
-    [SerializeField] private float m_rotationSpeed = 1.0f;
     [SerializeField] private Vector2 m_clampingXRotationValues = Vector2.zero;
+    [SerializeField] private Vector3 m_desiredPosition = Vector3.zero;
+    [SerializeField] private float m_distance;
+    [SerializeField] private float m_distanceCamToTravel;
     [SerializeField] private float m_closePointToObject = 3.92f;
     [SerializeField] private float m_farthestPointToObject = 10.0f;
-    [SerializeField] private float m_cameraTarget;
     [SerializeField] private float m_smoothSpeed = 0.5f;
-    [SerializeField] private Vector3 m_desiredPosition = Vector3.zero;
-    [SerializeField] private float m_distance = 0.0f;
-    [SerializeField] private float m_distanceCamToTravel;
+    [SerializeField] private float m_rotationSpeed = 1.0f;
 
     // Update is called once per frame
     void Update()
@@ -53,7 +52,7 @@ public class CameraController : MonoBehaviour
 
     private void UpdateCameraScroll()
     {
-        m_distance = Vector3.Distance(m_camera.position, m_objectToLookAt.position);
+        m_distance = Vector3.Distance(m_objectToLookAt.position, m_camera.position);
         float scrollDelta = Input.mouseScrollDelta.y;
 
         if (scrollDelta != 0)
