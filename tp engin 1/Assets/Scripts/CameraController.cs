@@ -5,7 +5,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform m_objectToLookAt;
     [SerializeField] private Transform m_camera;
     [SerializeField] private Vector2 m_clampingXRotationValues = Vector2.zero;
-    [SerializeField] private Vector3 m_desiredPosition = Vector3.zero;
+    [SerializeField] private float m_desiredPosition;
     [SerializeField] private float m_distance;
     [SerializeField] private float m_distanceCamToTravel;
     [SerializeField] private float m_closePointToObject = 3.92f;
@@ -56,26 +56,26 @@ public class CameraController : MonoBehaviour
 
         if (scrollDelta != 0)
         {
-            m_desiredPosition = new Vector3(0f, m_distance - scrollDelta, 0f);
+            m_desiredPosition = m_distance - scrollDelta;
         }
 
         if (m_distance < m_closePointToObject || m_distance > m_farthestPointToObject)
         {
             m_distance = Mathf.Clamp(m_distance, m_closePointToObject, m_farthestPointToObject);
-            Debug.Log("Trop proche ou trop loin de l'objet");
-            return;
+            m_desiredPosition = m_distance;
+            Debug.Log("Trop proche ou trop loin de l'objet");      
         }
 
         // TODO: Lerp plutôt que d'effectuer immédiatement la translation
 
         // faire le lerp
-        Vector3 lerpDirection = Vector3.Lerp(m_camera.position, m_desiredPosition, m_smoothSpeed);
-
-        // calculer la distance que la camera doit parcourire pour cette frame 
-        m_distanceCamToTravel = Vector3.Distance(lerpDirection, m_camera.position);
-
-        // apliquer le lerp a la camera 
-        m_camera.Translate(Vector3.forward * m_distanceCamToTravel, Space.Self);
+       // float lerpDirection = (m_camera.position, m_desiredPosition, m_smoothSpeed);
+       //
+       // // calculer la distance que la camera doit parcourire pour cette frame 
+       // m_distanceCamToTravel = Vector3.Distance(lerpDirection, m_camera.position);
+       //
+       // // apliquer le lerp a la camera 
+       // m_camera.Translate(Vector3.forward * m_distanceCamToTravel, Space.Self);
 
         //lerp - cam = dist       
 
