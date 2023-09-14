@@ -51,18 +51,16 @@ public class CameraController : MonoBehaviour
 
     private void UpdateCameraScroll()
     {
-        m_distance = Vector3.Distance(m_objectToLookAt.position, m_camera.position);
         float scrollDelta = Input.mouseScrollDelta.y;
 
         if (scrollDelta != 0)
         {
-            m_desiredPosition = m_distance - scrollDelta;
+            m_desiredPosition -= scrollDelta;
         }
 
-        if (m_distance < m_closePointToObject || m_distance > m_farthestPointToObject)
+        if (m_desiredPosition < m_closePointToObject || m_desiredPosition > m_farthestPointToObject)
         {
-            m_distance = Mathf.Clamp(m_distance, m_closePointToObject, m_farthestPointToObject);
-            m_desiredPosition = m_distance;
+            m_desiredPosition = Mathf.Clamp(m_desiredPosition, m_closePointToObject, m_farthestPointToObject);
             Debug.Log("Trop proche ou trop loin de l'objet");      
         }
 
@@ -70,11 +68,11 @@ public class CameraController : MonoBehaviour
 
         // faire le lerp
         //float lerpDirection = (m_camera.position, m_desiredPosition, m_smoothSpeed);
-        //
-        //// calculer la distance que la camera doit parcourire pour cette frame 
+        
+        // calculer la distance que la camera doit parcourire pour cette frame 
         //m_distanceCamToTravel = Vector3.Distance(lerpDirection, m_camera.position);
-        //
-        //// apliquer le lerp a la camera 
+        
+        // apliquer le lerp a la camera 
         //m_camera.Translate(Vector3.forward * m_distanceCamToTravel, Space.Self);
 
         //lerp - cam = dist       
