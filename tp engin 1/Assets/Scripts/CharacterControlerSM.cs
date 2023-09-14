@@ -10,6 +10,9 @@ public class CharacterControlerSM : MonoBehaviour
     private List<CharacterState> m_possibleStates;
     [SerializeField] private CharacterFloorTrigger m_floorTrigger;
 
+    [field: SerializeField] public float m_fowardSpeed { get; private set; }
+    [field: SerializeField] public float m_backwardSpeed { get; private set; }
+    [field: SerializeField] public float m_sidewaySpeed { get; private set; }
     [field:SerializeField] public float AccelerationFowardValue { get; private set; }
     [field:SerializeField] public float AccelerationSideValue { get; private set; }
     [field:SerializeField] public float MaxVelocity { get; private set; }

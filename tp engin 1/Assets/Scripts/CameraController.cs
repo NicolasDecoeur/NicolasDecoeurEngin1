@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -66,7 +65,7 @@ public class CameraController : MonoBehaviour
             Debug.Log("Trop proche ou trop loin de l'objet");
             return;
         }
-    
+
         // TODO: Lerp plutôt que d'effectuer immédiatement la translation
 
         // faire le lerp
@@ -78,9 +77,9 @@ public class CameraController : MonoBehaviour
         // apliquer le lerp a la camera 
         m_camera.Translate(Vector3.forward * m_distanceCamToTravel, Space.Self);
 
-        // lerp - cam = dist       
+        //lerp - cam = dist       
 
-        //  Vector3 direction = m_camera.position - m_objectToLookAt.position;
+        //Vector3 direction = m_camera.position - m_objectToLookAt.position;
     }
 
     private void MoveCameraInFrontOfObstructionFUpdate()
