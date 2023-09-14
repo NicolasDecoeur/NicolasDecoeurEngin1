@@ -8,7 +8,7 @@ public class JumpState : CharacterState
     {
         Debug.Log("entre Jump state");
 
-        m_stateMachine.RB.AddForce(Vector3.up * m_stateMachine.JumpItencity, ForceMode.Acceleration);
+        m_stateMachine.RBody.AddForce(Vector3.up * m_stateMachine.JumpItencity, ForceMode.Acceleration);
         m_currenteStateTimer = STATE_EXIT_TIMER;
     }
     public override void OnUpdate()

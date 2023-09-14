@@ -4,15 +4,16 @@ using UnityEngine;
 public class CharacterControlerSM : MonoBehaviour
 {
     public Camera Camera { get; private set; }
-    public Rigidbody RB { get; private set; }
 
     private CharacterState m_currentState;
     private List<CharacterState> m_possibleStates;
     [SerializeField] private CharacterFloorTrigger m_floorTrigger;
-
+    
+    [field: SerializeField] private Animator Animator { get; set; }
+    [field: SerializeField] public Rigidbody RBody { get; private set; }
     [field: SerializeField] public float m_fowardSpeed { get; private set; }
-    [field: SerializeField] public float m_backwardSpeed { get; private set; }
     [field: SerializeField] public float m_sidewaySpeed { get; private set; }
+    [field: SerializeField] public float m_backwardSpeed { get; private set; }
     [field:SerializeField] public float AccelerationFowardValue { get; private set; }
     [field:SerializeField] public float AccelerationSideValue { get; private set; }
     [field:SerializeField] public float MaxVelocity { get; private set; }
@@ -28,7 +29,6 @@ public class CharacterControlerSM : MonoBehaviour
     void Start()
     {
         Camera = Camera.main;
-        RB = GetComponent<Rigidbody>();
 
         foreach (CharacterState state in m_possibleStates)
         {
@@ -71,5 +71,11 @@ public class CharacterControlerSM : MonoBehaviour
     public bool IsInContactWithFloor()
     {
         return m_floorTrigger.IsOnFloor;
+    }
+
+    public void UpdateAnimatorValue(Vector3 fowardVector, Vector3 lateraVector)
+    {
+        Animator.SetFloat("MoveX", lateraVector.x);
+        Animator.SetFloat("MoveY", fowardVector.y);
     }
 }

@@ -18,7 +18,6 @@ public class FreeState : CharacterState
         int numberOfInputs = 0;
         float speed = 0;
 
-
         if (Input.GetKey(KeyCode.W)) // up
         {
             movementVector += Vector3.forward;
@@ -44,10 +43,10 @@ public class FreeState : CharacterState
             speed += m_stateMachine.m_sidewaySpeed;
         }
 
-        if (m_stateMachine.RB.velocity.magnitude > m_stateMachine.MaxVelocity)
+        if (m_stateMachine.RBody.velocity.magnitude > m_stateMachine.MaxVelocity)
         {
-            m_stateMachine.RB.velocity = m_stateMachine.RB.velocity.normalized;
-            m_stateMachine.RB.velocity *= m_stateMachine.MaxVelocity;
+            m_stateMachine.RBody.velocity = m_stateMachine.RBody.velocity.normalized;
+            m_stateMachine.RBody.velocity *= m_stateMachine.MaxVelocity;
         }
 
         float normalizeSpeed = 0;
@@ -56,7 +55,9 @@ public class FreeState : CharacterState
             normalizeSpeed = speed / numberOfInputs;
         }
 
+        
         movementVector = movementVector.normalized;
+        movementVector *= normalizeSpeed;
 
         var vectorOnFloorForward = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward, Vector3.up);
         vectorOnFloorForward.Normalize(); 
@@ -64,9 +65,11 @@ public class FreeState : CharacterState
         var vectorOnFloorRight = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.right, Vector3.up);
         vectorOnFloorRight.Normalize();
 
-        m_stateMachine.RB.AddForce(vectorOnFloorForward * movementVector.z * normalizeSpeed, ForceMode.Acceleration);
-        m_stateMachine.RB.AddForce(vectorOnFloorRight * movementVector.x * normalizeSpeed, ForceMode.Acceleration);
+        m_stateMachine.RBody.AddForce(vectorOnFloorForward * movementVector.z, ForceMode.Acceleration);
+        m_stateMachine.RBody.AddForce(vectorOnFloorRight * movementVector.x, ForceMode.Acceleration);
 
+        
+        m_stateMachine.UpdateAnimatorValue(vectorOnFloorForward, vectorOnFloorRight);
         //TODO 31 AOÛT:
         //Avoir des vitesses de déplacements maximales différentes vers les côtés et vers l'arrière
         //Lorsqu'aucun input est mis, décélérer le personnage rapidement

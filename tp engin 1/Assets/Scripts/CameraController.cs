@@ -69,13 +69,13 @@ public class CameraController : MonoBehaviour
         // TODO: Lerp plutôt que d'effectuer immédiatement la translation
 
         // faire le lerp
-       // float lerpDirection = (m_camera.position, m_desiredPosition, m_smoothSpeed);
-       //
-       // // calculer la distance que la camera doit parcourire pour cette frame 
-       // m_distanceCamToTravel = Vector3.Distance(lerpDirection, m_camera.position);
-       //
-       // // apliquer le lerp a la camera 
-       // m_camera.Translate(Vector3.forward * m_distanceCamToTravel, Space.Self);
+        //float lerpDirection = (m_camera.position, m_desiredPosition, m_smoothSpeed);
+        //
+        //// calculer la distance que la camera doit parcourire pour cette frame 
+        //m_distanceCamToTravel = Vector3.Distance(lerpDirection, m_camera.position);
+        //
+        //// apliquer le lerp a la camera 
+        //m_camera.Translate(Vector3.forward * m_distanceCamToTravel, Space.Self);
 
         //lerp - cam = dist       
 
