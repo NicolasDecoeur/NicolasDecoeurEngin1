@@ -38,8 +38,11 @@ public class FreeState : CharacterState
             m_stateMachine.RBody.velocity = m_stateMachine.RBody.velocity.normalized;
             m_stateMachine.RBody.velocity *= m_stateMachine.MaxVelocity;
         }
-     // prendre mouvementVector .z .y et faire la formule apres 
+        // prendre mouvementVector .z .y et faire la formule apres 
         movementVector = movementVector.normalized;
+
+        movementVector.z = 0f;
+        movementVector.y = 0f;
 
         var vectorOnFloorForward = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward, Vector3.up);
         vectorOnFloorForward.Normalize(); 

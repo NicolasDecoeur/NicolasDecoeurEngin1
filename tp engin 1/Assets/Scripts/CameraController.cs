@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -49,36 +50,36 @@ public class CameraController : MonoBehaviour
         transform.RotateAround(m_objectToLookAt.position, transform.right, currentAngleY);
     }
 
-    private void UpdateCameraScroll()
-    {
-        float scrollDelta = Input.mouseScrollDelta.y;
+     private void UpdateCameraScroll()
+     {
+         float scrollDelta = Input.mouseScrollDelta.y;
 
-        if (scrollDelta != 0)
-        {
-            m_desiredPosition -= scrollDelta;
-        }
+         if (scrollDelta != 0)
+         {
+             m_desiredPosition -= scrollDelta;
+         }
 
-        if (m_desiredPosition < m_closePointToObject || m_desiredPosition > m_farthestPointToObject)
-        {
-            m_desiredPosition = Mathf.Clamp(m_desiredPosition, m_closePointToObject, m_farthestPointToObject);
-            Debug.Log("Trop proche ou trop loin de l'objet");      
-        }
+         if (m_desiredPosition < m_closePointToObject || m_desiredPosition > m_farthestPointToObject)
+         {
+             m_desiredPosition = Mathf.Clamp(m_desiredPosition, m_closePointToObject, m_farthestPointToObject);
+             Debug.Log("Trop proche ou trop loin de l'objet");      
+         }
 
-        // TODO: Lerp plutôt que d'effectuer immédiatement la translation
+         // TODO: Lerp plutôt que d'effectuer immédiatement la translation
+         float cameraPos = m_camera.position.y;
+         // faire le lerp
+         float lerpDirection = Mathf.Lerp(cameraPos, m_desiredPosition, m_smoothSpeed);
 
-        // faire le lerp
-        //float lerpDirection = (m_camera.position, m_desiredPosition, m_smoothSpeed);
-        
-        // calculer la distance que la camera doit parcourire pour cette frame 
-        //m_distanceCamToTravel = Vector3.Distance(lerpDirection, m_camera.position);
-        
-        // apliquer le lerp a la camera 
-        //m_camera.Translate(Vector3.forward * m_distanceCamToTravel, Space.Self);
+         // calculer la distance que la camera doit parcourire pour cette frame 
+         m_distanceCamToTravel = m_desiredPosition - m_camera.position.y;
 
-        //lerp - cam = dist       
+         // apliquer le lerp a la camera 
+         m_camera.Translate(Vector3.zero * m_desiredPosition * lerpDirection, Space.Self);
+         //m_camera.Translate(Vector3.forward * m_distanceCamToTravel, Space.Self);
 
-        //Vector3 direction = m_camera.position - m_objectToLookAt.position;
-    }
+         //lerp - cam = dist
+         //distance = lerp - cam 
+     }
 
     private void MoveCameraInFrontOfObstructionFUpdate()
     {
