@@ -41,8 +41,20 @@ public class FreeState : CharacterState
         // prendre mouvementVector .z .y et faire la formule apres 
         movementVector = movementVector.normalized;
 
-        movementVector.z = 0f;
-        movementVector.y = 0f;
+        float NormalizeSpeed = 0f;
+
+        if (movementVector.z > 0) // Déplacement vers l'avant
+        {
+            NormalizeSpeed = (movementVector.z * m_stateMachine.m_fowardSpeed) + (movementVector.x * m_stateMachine.m_sidewaySpeed);
+        }
+        else if (movementVector.z < 0) // Déplacement vers l'arrière
+        {
+            NormalizeSpeed = (movementVector.z * m_stateMachine.m_backwardSpeed) + (movementVector.x * m_stateMachine.m_sidewaySpeed);
+        }
+        else // Déplacement sur les côtés
+        {
+            NormalizeSpeed = Mathf.Abs(movementVector.x) * m_stateMachine.m_sidewaySpeed;
+        }
 
         var vectorOnFloorForward = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward, Vector3.up);
         vectorOnFloorForward.Normalize(); 
@@ -50,8 +62,8 @@ public class FreeState : CharacterState
         var vectorOnFloorRight = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.right, Vector3.up);
         vectorOnFloorRight.Normalize();
 
-        m_stateMachine.RBody.AddForce(vectorOnFloorForward * movementVector.z, ForceMode.Acceleration);
-        m_stateMachine.RBody.AddForce(vectorOnFloorRight * movementVector.x, ForceMode.Acceleration);
+        m_stateMachine.RBody.AddForce(vectorOnFloorForward * NormalizeSpeed, ForceMode.Acceleration);
+        m_stateMachine.RBody.AddForce(vectorOnFloorRight * NormalizeSpeed, ForceMode.Acceleration);
 
         
         m_stateMachine.UpdateAnimatorValue(vectorOnFloorForward, vectorOnFloorRight);
