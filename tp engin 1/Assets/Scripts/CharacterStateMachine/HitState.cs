@@ -17,7 +17,7 @@ public class HitState : CharacterState
     {
 
     }
-    public override bool CanEnter()
+    public override bool CanEnter(CharacterState currentState)
     {
         //this must be run in update absolutely
         return Input.GetKeyDown(KeyCode.H);

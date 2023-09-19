@@ -8,8 +8,8 @@ public class CharacterControlerSM : MonoBehaviour
     private CharacterState m_currentState;
     private List<CharacterState> m_possibleStates;
     [SerializeField] private CharacterFloorTrigger m_floorTrigger;
-    
-    [field: SerializeField] private Animator Animator { get; set; }
+   
+    [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Rigidbody RB { get; private set; }
     [field: SerializeField] public float m_fowardSpeed { get; private set; }
     [field: SerializeField] public float m_sidewaySpeed { get; private set; }
@@ -60,7 +60,7 @@ public class CharacterControlerSM : MonoBehaviour
             {
                 continue;
             }
-            if (state.CanEnter())
+            if (state.CanEnter(m_currentState))
             {
                 m_currentState.OnExit();
                 m_currentState = state;
@@ -83,5 +83,10 @@ public class CharacterControlerSM : MonoBehaviour
 
         Animator.SetFloat("MoveX", movementVecValue.x);
         Animator.SetFloat("MoveY", movementVecValue.y);
+    }
+
+    public void UpdateAnimatorJump()
+    {
+        Animator.SetTrigger("Jump");
     }
 }
