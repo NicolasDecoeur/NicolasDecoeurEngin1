@@ -8392,12 +8392,12 @@ MonoBehaviour:
   m_floorTrigger: {fileID: 7720938983409268232}
   <Animator>k__BackingField: {fileID: 1796141387123069463}
   <RB>k__BackingField: {fileID: 3645000581464635417}
-  <m_fowardSpeed>k__BackingField: 30
-  <m_sidewaySpeed>k__BackingField: 20
-  <m_backwardSpeed>k__BackingField: 10
+  <m_fowardSpeed>k__BackingField: 200
+  <m_sidewaySpeed>k__BackingField: 100
+  <m_backwardSpeed>k__BackingField: 75
   <AccelerationFowardValue>k__BackingField: 30
   <AccelerationSideValue>k__BackingField: 30
-  <MaxVelocity>k__BackingField: 50
+  <MaxVelocity>k__BackingField: 1
   <JumpItencity>k__BackingField: 350
 --- !u!1 &7013861826673210114
 GameObject:
@@ -10186,7 +10186,7 @@ Transform:
   m_GameObject: {fileID: 7855528350280346764}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17727289, y: -0, z: -0, w: 0.9841618}
-  m_LocalPosition: {x: 0, y: 9, z: -15}
+  m_LocalPosition: {x: 0, y: 3.88, z: -8.09}
   m_LocalScale: {x: 2.8349283, y: 2.8349283, z: 2.8349283}
   m_ConstrainProportionsScale: 0
   m_Children: []

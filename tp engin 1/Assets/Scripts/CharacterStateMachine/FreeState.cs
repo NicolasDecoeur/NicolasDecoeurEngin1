@@ -83,7 +83,6 @@ public class FreeState : CharacterState
     {
         var vectorOnFloor = Vector3.zero;
         
-
         if (Input.GetKey(KeyCode.W)) // up
         {
             vectorOnFloor += Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward, Vector3.up);
@@ -133,8 +132,11 @@ public class FreeState : CharacterState
         else if (NormalizeSpeed < 0)
         m_stateMachine.RB.AddForce(vectorOnFloor * -NormalizeSpeed, ForceMode.Acceleration);
 
-        m_stateMachine.UpdateAnimatorValues(new Vector2(vectorOnFloor.x, vectorOnFloor.z));
+     m_stateMachine.UpdateAnimatorValues(new Vector2(vectorOnFloor.x, vectorOnFloor.z));
 
+        //TODO 31 AOÛT:
+        //Avoir des vitesses de déplacements maximales différentes vers les côtés et vers l'arrière
+        //Lorsqu'aucun input est mis, décélérer le personnage rapidement
     }
     public override void OnExit()
     {

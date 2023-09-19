@@ -24,6 +24,7 @@ public class CharacterControlerSM : MonoBehaviour
         m_possibleStates = new List<CharacterState>();
         m_possibleStates.Add(new FreeState());
         m_possibleStates.Add(new JumpState());
+        m_possibleStates.Add(new HitState());
     }
 
     void Start()

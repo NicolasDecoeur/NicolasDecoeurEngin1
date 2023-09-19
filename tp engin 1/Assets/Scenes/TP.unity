@@ -682,11 +682,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5026201829464250162, guid: 833b6e7b67981a24ca06a9a7ea9b8f16,
-        type: 3}
-      propertyPath: <MaxVelocity>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5688629097943994696, guid: 833b6e7b67981a24ca06a9a7ea9b8f16,
         type: 3}
       propertyPath: m_Name
