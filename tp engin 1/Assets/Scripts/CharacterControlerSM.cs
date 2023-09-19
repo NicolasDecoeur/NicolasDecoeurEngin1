@@ -10,7 +10,7 @@ public class CharacterControlerSM : MonoBehaviour
     [SerializeField] private CharacterFloorTrigger m_floorTrigger;
     
     [field: SerializeField] private Animator Animator { get; set; }
-    [field: SerializeField] public Rigidbody RBody { get; private set; }
+    [field: SerializeField] public Rigidbody RB { get; private set; }
     [field: SerializeField] public float m_fowardSpeed { get; private set; }
     [field: SerializeField] public float m_sidewaySpeed { get; private set; }
     [field: SerializeField] public float m_backwardSpeed { get; private set; }
@@ -73,9 +73,14 @@ public class CharacterControlerSM : MonoBehaviour
         return m_floorTrigger.IsOnFloor;
     }
 
-    public void UpdateAnimatorValue(Vector3 fowardVector, Vector3 lateraVector)
+    public void UpdateAnimatorValues(Vector2 movementVecValue)
     {
-        Animator.SetFloat("MoveX", lateraVector.x);
-        Animator.SetFloat("MoveY", fowardVector.y);
+        //Aller chercher ma vitesse actuelle
+        //Communiquer directement avec mon Animator
+
+        movementVecValue = new Vector2(movementVecValue.x, movementVecValue.y / MaxVelocity);
+
+        Animator.SetFloat("MoveX", movementVecValue.x);
+        Animator.SetFloat("MoveY", movementVecValue.y);
     }
 }

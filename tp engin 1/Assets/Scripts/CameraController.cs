@@ -62,11 +62,8 @@ public class CameraController : MonoBehaviour
          }
 
          // si on est hors de la range donner on les ramene dans les norme choisie
-         if (m_desiredPosition < m_closePointToObject || m_desiredPosition > m_farthestPointToObject)
-         {
-             m_desiredPosition = Mathf.Clamp(m_desiredPosition, m_closePointToObject, m_farthestPointToObject);
-             Debug.Log("Trop proche ou trop loin de l'objet");      
-         }
+         m_desiredPosition = Mathf.Clamp(m_desiredPosition, m_closePointToObject, m_farthestPointToObject);
+         Debug.Log("Trop proche ou trop loin de l'objet");      
 
          // TODO: Lerp plutôt que d'effectuer immédiatement la translation
          
@@ -110,5 +107,10 @@ public class CameraController : MonoBehaviour
             angle -= 360;
         }
         return angle;
+    }
+
+    private void CameraLerping()
+    {
+
     }
 }
