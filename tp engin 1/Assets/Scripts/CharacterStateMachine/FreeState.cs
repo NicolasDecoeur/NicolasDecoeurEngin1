@@ -167,7 +167,7 @@ public class FreeState : CharacterState
 
         Vector3 directionMovement = Vector3.zero;
 
-        // trouver et normaliser la direction du vector de deplacement
+        // trouver et normaliser la direction du vector de deplacement ok
 
         if (Input.GetKey(KeyCode.W)) // up
         {
@@ -210,18 +210,35 @@ public class FreeState : CharacterState
 
         if (directionMovement.z > 0) // Déplacement vers l'avant
         {
-            NormalizeSpeed = ((directionMovement.z * m_stateMachine.m_fowardSpeed) + (directionMovement.x * m_stateMachine.m_sidewaySpeed));
-            Debug.Log(directionMovement.z + " avant " + directionMovement.x + " cote " + NormalizeSpeed + " vitesse ");
-        }     
+            if (directionMovement.x != 0)
+            {
+                NormalizeSpeed = ((directionMovement.z / directionMovement.x) * m_stateMachine.m_fowardSpeed) + ((directionMovement.x / directionMovement.z) * m_stateMachine.m_sidewaySpeed);
+               // Debug.Log(directionMovement.z + " avant " + directionMovement.x + " cote " + NormalizeSpeed + " vitesse ");
+               //Debug.Log(movementVector.z + " avant " + movementVector.x + " cote " + NormalizeSpeed + " vitesse ");
+            }
+            else
+            {
+                NormalizeSpeed = m_stateMachine.m_fowardSpeed;
+               // Debug.Log(directionMovement.z + " avant " + NormalizeSpeed + " vitesse ");
+            }
+        }
         else if (directionMovement.z < 0) // Déplacement vers l'arrière
         {
-            NormalizeSpeed = ((directionMovement.z * m_stateMachine.m_backwardSpeed) + (directionMovement.x * m_stateMachine.m_sidewaySpeed));
-            Debug.Log(directionMovement.z + " arriere " + directionMovement.x + " cote " + NormalizeSpeed + " vitesse ");
+            if (directionMovement.x != 0)
+            {
+                NormalizeSpeed = ((directionMovement.z / directionMovement.x) * m_stateMachine.m_backwardSpeed) + ((directionMovement.x / directionMovement.z) * m_stateMachine.m_sidewaySpeed);
+               // Debug.Log(directionMovement.z + " arriere " + directionMovement.x + " cote " + NormalizeSpeed + " vitesse ");
+            }
+            else
+            {
+                NormalizeSpeed = m_stateMachine.m_backwardSpeed;
+              //  Debug.Log(directionMovement.z + " arriere " + NormalizeSpeed + " vitesse ");
+            }
         }
-        else if (directionMovement.x !=0 ) // Déplacement sur les côtés
+        else if (directionMovement.x != 0) // Déplacement sur les côtés
         {
             NormalizeSpeed = m_stateMachine.m_sidewaySpeed;
-            Debug.Log(directionMovement.x + " cote " + NormalizeSpeed + " vitesse ");
+          //  Debug.Log(directionMovement.x + " cote " + NormalizeSpeed + " vitesse ");
         }
 
         // apliquer l aceleration
