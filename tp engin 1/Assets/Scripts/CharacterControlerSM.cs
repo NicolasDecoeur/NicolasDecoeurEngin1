@@ -89,4 +89,9 @@ public class CharacterControlerSM : MonoBehaviour
     {
         Animator.SetTrigger("Jump");
     }
+
+    public void UpdateAnimatorHit()
+    {
+        Animator.SetBool("Hit",true);
+    }
 }
