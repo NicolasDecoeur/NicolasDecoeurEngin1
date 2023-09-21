@@ -10310,12 +10310,12 @@ MonoBehaviour:
   m_objectToLookAt: {fileID: 4008542112970794477}
   m_camera: {fileID: 9120744316500251788}
   m_clampingXRotationValues: {x: -20, y: 75}
-  m_desiredPosition: 0
+  m_desiredDistance: 0
   m_distance: 10
   m_distanceCamNeedToTravel: 0
   m_closePointToObject: 4
   m_farthestPointToObject: 20
-  m_smoothSpeed: 0.5
+  m_smoothSpeed: 0.005
   m_rotationSpeed: 5
 --- !u!1 &7869928846251018778
 GameObject:

@@ -15,7 +15,6 @@ public class HitState : CharacterState
     }
     public override void OnFixedUpdate()
     {
-
     }
     public override bool CanEnter(CharacterState currentState)
     {
@@ -32,7 +31,6 @@ public class HitState : CharacterState
     }
     public override void OnExit()
     {
-
         Debug.Log("sortie Hit state");
     }
 }

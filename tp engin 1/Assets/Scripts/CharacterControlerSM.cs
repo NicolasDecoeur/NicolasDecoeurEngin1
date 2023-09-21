@@ -78,7 +78,6 @@ public class CharacterControlerSM : MonoBehaviour
     {
         //Aller chercher ma vitesse actuelle
         //Communiquer directement avec mon Animator
-
         movementVecValue = new Vector2(movementVecValue.x, movementVecValue.y / MaxVelocity);
 
         Animator.SetFloat("MoveX", movementVecValue.x);

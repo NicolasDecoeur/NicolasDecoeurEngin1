@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -6,7 +5,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform m_objectToLookAt;
     [SerializeField] private Transform m_camera;
     [SerializeField] private Vector2 m_clampingXRotationValues = Vector2.zero;
-    [SerializeField] private float m_desiredPosition;
+    [SerializeField] private float m_desiredDistance;
     [SerializeField] private float m_distance;
     [SerializeField] private float m_distanceCamNeedToTravel;
     [SerializeField] private float m_closePointToObject = 3.92f;
@@ -37,13 +36,12 @@ public class CameraController : MonoBehaviour
     {
         float currentAngleY = Input.GetAxis("Mouse Y") * m_rotationSpeed;
         float eulersAngleX = transform.rotation.eulerAngles.x;
-
         float comparisonAngle = eulersAngleX + currentAngleY;
 
         comparisonAngle = ClampAngle(comparisonAngle);
 
         if ((currentAngleY < 0 && comparisonAngle < m_clampingXRotationValues.x)
-            || (currentAngleY > 0 && comparisonAngle > m_clampingXRotationValues.y))
+           || (currentAngleY > 0 && comparisonAngle > m_clampingXRotationValues.y))
         {
             return;
         }
@@ -52,33 +50,32 @@ public class CameraController : MonoBehaviour
 
      private void UpdateCameraScroll()
      {
-        // on prend le input en compte
-         float scrollDelta = Input.mouseScrollDelta.y;
 
-        // si un input on l ajoute a desiredposition
-         if (scrollDelta != 0)
-         {
-             m_desiredPosition -= scrollDelta;
-         }
+        //prendre les input ok
+        float scrollDelta = Input.mouseScrollDelta.y;
+        float cameraDistance = 0;
 
-         // si on est hors de la range donner on les ramene dans les norme choisie
-         m_desiredPosition = Mathf.Clamp(m_desiredPosition, m_closePointToObject, m_farthestPointToObject);
-         Debug.Log("Trop proche ou trop loin de l'objet");      
+        //ajuster les diff entre les input et ou on veux etre ok
+        if (scrollDelta != 0)
+        {
+             m_desiredDistance -= scrollDelta;
+        }
 
-         // TODO: Lerp plutôt que d'effectuer immédiatement la translation
+        // si on est hors de la range donner on les ramene dans les norme choisie
+        //clamper la position desirer entre 2 valeur ok
+        m_desiredDistance = Mathf.Clamp(m_desiredDistance, m_closePointToObject, m_farthestPointToObject);
+         Debug.Log("Trop proche ou trop loin de l'objet");
+
+        //calculer la distance entre la camera et le perso ok
+        cameraDistance = Vector3.Distance(m_objectToLookAt.position, m_camera.position);
+
+        //calculer le lerp 
+        float lerpDirection = Mathf.Lerp(cameraDistance, m_desiredDistance, m_smoothSpeed);
+
+        float frameLerpingDistance = cameraDistance - lerpDirection;
          
-         // on fait le lerp 
-        float cameraPos = m_camera.position.y;
-        float lerpDirection = Mathf.Lerp(cameraPos, m_desiredPosition, m_smoothSpeed);
-
-         // calculer la distance que la camera doit parcourire pour cette frame 
-         m_distanceCamNeedToTravel = m_desiredPosition - m_camera.position.y;
-
-        // apliquer le lerp a la camera
-        //m_camera.Translate(, Space.Self);
-
-         //lerp - cam = dist
-         //distance = lerp - cam 
+        //effectuer le lerp sur la camera 
+        m_camera.Translate(Vector3.forward * frameLerpingDistance, Space.Self);
      }
 
     private void MoveCameraInFrontOfObstructionFUpdate()
@@ -107,10 +104,5 @@ public class CameraController : MonoBehaviour
             angle -= 360;
         }
         return angle;
-    }
-
-    private void CameraLerping()
-    {
-
     }
 }
