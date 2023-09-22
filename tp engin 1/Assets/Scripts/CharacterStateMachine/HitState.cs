@@ -1,13 +1,13 @@
 using UnityEngine;
-
 public class HitState : CharacterState
 {
-    private const float STATE_EXIT_TIMER = 1f;
+    private const float STATE_EXIT_TIMER = 5f;
     private float m_currenteStateTimer = 0.0f;
     public override void OnEnter()
     {
         Debug.Log("entre Hit state");
         m_currenteStateTimer = STATE_EXIT_TIMER;
+        m_stateMachine.UpdateAnimatorHit();
     }
     public override void OnUpdate()
     {
@@ -19,10 +19,16 @@ public class HitState : CharacterState
     public override bool CanEnter(CharacterState currentState)
     {
         //this must be run in update absolutely
+        if (m_stateMachine.IsInStuntZone() == true)
+        {
+            return true;
+        }
+
         return Input.GetKeyDown(KeyCode.H);
     }
     public override bool CanExit()
     {
+
         if (m_currenteStateTimer <= 0.0f)
         {
             return true;

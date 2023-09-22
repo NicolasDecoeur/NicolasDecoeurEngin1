@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 public class CharacterControlerSM : MonoBehaviour
 {
     public Camera Camera { get; private set; }
@@ -8,6 +7,7 @@ public class CharacterControlerSM : MonoBehaviour
     private CharacterState m_currentState;
     private List<CharacterState> m_possibleStates;
     [SerializeField] private CharacterFloorTrigger m_floorTrigger;
+    [SerializeField] private StuntZone m_stuntZone;
    
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Rigidbody RB { get; private set; }
@@ -74,6 +74,11 @@ public class CharacterControlerSM : MonoBehaviour
         return m_floorTrigger.IsOnFloor;
     }
 
+    public bool IsInStuntZone() 
+    {
+        return m_stuntZone.IsOnStuntZone;
+    }
+
     public void UpdateAnimatorValues(Vector2 movementVecValue)
     {
         //Aller chercher ma vitesse actuelle
@@ -91,6 +96,6 @@ public class CharacterControlerSM : MonoBehaviour
 
     public void UpdateAnimatorHit()
     {
-        Animator.SetBool("Hit",true);
+        Animator.SetTrigger("Hit");
     }
 }

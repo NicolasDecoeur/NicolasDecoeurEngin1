@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class CharacterFloorTrigger : MonoBehaviour
 {
     public bool IsOnFloor { get; private set; }

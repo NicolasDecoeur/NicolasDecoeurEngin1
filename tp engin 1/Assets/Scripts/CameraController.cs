@@ -1,13 +1,10 @@
 using UnityEngine;
-
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform m_objectToLookAt;
     [SerializeField] private Transform m_camera;
     [SerializeField] private Vector2 m_clampingXRotationValues = Vector2.zero;
     [SerializeField] private float m_desiredDistance;
-    [SerializeField] private float m_distance;
-    [SerializeField] private float m_distanceCamNeedToTravel;
     [SerializeField] private float m_closePointToObject = 3.92f;
     [SerializeField] private float m_farthestPointToObject = 10.0f;
     [SerializeField] private float m_smoothSpeed = 0.5f;
@@ -50,31 +47,22 @@ public class CameraController : MonoBehaviour
 
      private void UpdateCameraScroll()
      {
-
-        //prendre les input ok
         float scrollDelta = Input.mouseScrollDelta.y;
         float cameraDistance = 0;
 
-        //ajuster les diff entre les input et ou on veux etre ok
         if (scrollDelta != 0)
         {
              m_desiredDistance -= scrollDelta;
         }
 
-        // si on est hors de la range donner on les ramene dans les norme choisie
-        //clamper la position desirer entre 2 valeur ok
         m_desiredDistance = Mathf.Clamp(m_desiredDistance, m_closePointToObject, m_farthestPointToObject);
-         Debug.Log("Trop proche ou trop loin de l'objet");
 
-        //calculer la distance entre la camera et le perso ok
         cameraDistance = Vector3.Distance(m_objectToLookAt.position, m_camera.position);
 
-        //calculer le lerp 
         float lerpDirection = Mathf.Lerp(cameraDistance, m_desiredDistance, m_smoothSpeed);
 
         float frameLerpingDistance = cameraDistance - lerpDirection;
-         
-        //effectuer le lerp sur la camera 
+
         m_camera.Translate(Vector3.forward * frameLerpingDistance, Space.Self);
      }
 

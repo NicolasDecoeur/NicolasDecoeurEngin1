@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class JumpState : CharacterState
 {   
     public override void OnEnter()
@@ -27,6 +26,7 @@ public class JumpState : CharacterState
     {
         if (!m_stateMachine.IsInContactWithFloor())
         {
+            m_stateMachine.Animator.SetBool("TouchGround", false);
             return false;
         }
         return true;
