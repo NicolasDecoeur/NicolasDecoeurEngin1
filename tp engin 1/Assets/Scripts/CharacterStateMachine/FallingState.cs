@@ -20,7 +20,7 @@ public class FallingState : CharacterState
 
     public override bool CanEnter(CharacterState currentState)
     {
-        return true;
+        return false;
     }
 
     public override bool CanExit()

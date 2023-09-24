@@ -95,7 +95,7 @@ public class FreeState : CharacterState
         if (jumpState != null)
         {
             //si je suis ici, c est que je suis preetement dans le jump state et test
-            // si je peux entre dans freestate
+            //si je peux entre dans freestate
             return m_stateMachine.IsInContactWithFloor();
         }
         if (hitState != null) 
