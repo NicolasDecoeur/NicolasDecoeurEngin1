@@ -1,32 +1,37 @@
 using UnityEngine;
 public class FreeState : CharacterState
 {
+    private float DELAY_BETWEEN_STATE = 1.0f;
+    private float m_currentTimer = 0.0f;
+   
     public override void OnEnter()
     {
+        m_currentTimer = DELAY_BETWEEN_STATE;
         Debug.Log("entre free state");
     }
     public override void OnUpdate()
     {
+        m_currentTimer -= Time.deltaTime;
     }
     public override void OnFixedUpdate()
     {
-        Vector3 directionMovement = Vector3.zero;
+        Vector3 DirectionalVector = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W)) // up
+        if (Input.GetKey(KeyCode.W))
         {
-            directionMovement += Vector3.forward;
+            DirectionalVector += Vector3.forward;
         }
-        if (Input.GetKey(KeyCode.S)) // down
+        if (Input.GetKey(KeyCode.S))
         {
-            directionMovement += Vector3.back;
+            DirectionalVector += Vector3.back;
         }
-        if (Input.GetKey(KeyCode.A)) // left
+        if (Input.GetKey(KeyCode.A))
         {
-            directionMovement += Vector3.left;
+            DirectionalVector += Vector3.left;
         }
-        if (Input.GetKey(KeyCode.D)) // right
+        if (Input.GetKey(KeyCode.D))
         {
-            directionMovement += Vector3.right;
+            DirectionalVector += Vector3.right;
         }
         if (m_stateMachine.RB.velocity.magnitude > m_stateMachine.MaxVelocity)
         {
@@ -34,52 +39,52 @@ public class FreeState : CharacterState
             m_stateMachine.RB.velocity *= m_stateMachine.MaxVelocity;
         }
 
-        Vector3 vectorOnFloorForward = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward * directionMovement.z, Vector3.up);   
-        Vector3 vectorOnFloorSideway = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.right * directionMovement.x, Vector3.up);
+        Vector3 vectorOnFloorForward = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward * DirectionalVector.z, Vector3.up);   
+        Vector3 vectorOnFloorSideway = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.right * DirectionalVector.x, Vector3.up);
 
-        Vector3 movementVector = Vector3.zero;
-        movementVector = vectorOnFloorForward + vectorOnFloorSideway;
-        movementVector.Normalize();
+        Vector3 normalizeMovement = Vector3.zero;
+        normalizeMovement = vectorOnFloorForward + vectorOnFloorSideway;
+        normalizeMovement.Normalize();
 
         float NormalizeSpeed = 0f;
 
-        float inputMagnitude = directionMovement.magnitude;
+        float inputMagnitude = DirectionalVector.magnitude;
 
         if (inputMagnitude > 1.0f)
         {
-            directionMovement /= inputMagnitude;
+            DirectionalVector /= inputMagnitude;
         }
 
-        if (directionMovement.z > 0) // Déplacement vers l'avant
+        if (DirectionalVector.z > 0)
         {
-            if (directionMovement.x != 0)
+            if (DirectionalVector.x != 0)
             {
-                NormalizeSpeed = (Mathf.Abs(directionMovement.z) * m_stateMachine.m_fowardSpeed) + (Mathf.Abs(directionMovement.x) * m_stateMachine.m_sidewaySpeed);
+                NormalizeSpeed = (Mathf.Abs(DirectionalVector.z) * m_stateMachine.m_fowardSpeed) + (Mathf.Abs(DirectionalVector.x) * m_stateMachine.m_sidewaySpeed);
             }
             else
             {
                 NormalizeSpeed = m_stateMachine.m_fowardSpeed;
             }
         }
-        else if (directionMovement.z < 0) // Déplacement vers l'arrière
+        else if (DirectionalVector.z < 0)
         {
-            if (directionMovement.x != 0)
+            if (DirectionalVector.x != 0)
             {
-                NormalizeSpeed = (Mathf.Abs(directionMovement.z) * m_stateMachine.m_backwardSpeed) + (Mathf.Abs(directionMovement.x) * m_stateMachine.m_sidewaySpeed);
+                NormalizeSpeed = (Mathf.Abs(DirectionalVector.z) * m_stateMachine.m_backwardSpeed) + (Mathf.Abs(DirectionalVector.x) * m_stateMachine.m_sidewaySpeed);
             }
             else
             {
                 NormalizeSpeed = m_stateMachine.m_backwardSpeed;
             }
         }
-        else if (directionMovement.x != 0) // Déplacement sur les côtés
+        else if (DirectionalVector.x != 0)
         {
             NormalizeSpeed = m_stateMachine.m_sidewaySpeed;
         }
 
-        m_stateMachine.RB.AddForce(movementVector * NormalizeSpeed, ForceMode.Acceleration);
+        m_stateMachine.RB.AddForce(normalizeMovement * NormalizeSpeed, ForceMode.Acceleration);
 
-        m_stateMachine.UpdateAnimatorValues(new Vector2(directionMovement.x, directionMovement.z));
+        m_stateMachine.UpdateAnimatorValues(new Vector2(DirectionalVector.x, DirectionalVector.z));
 
         //TODO 31 AOÛT:
         //Lorsqu'aucun input est mis, décélérer le personnage rapidement
@@ -106,6 +111,10 @@ public class FreeState : CharacterState
     }
     public override bool CanExit()
     {
-        return true;
+        if (m_currentTimer <=0)
+        {
+            return true;
+        }
+        return false;
     }
 }

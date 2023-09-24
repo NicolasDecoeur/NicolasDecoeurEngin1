@@ -4,6 +4,7 @@ public class FallingState : CharacterState
 {
     public override void OnEnter()
     {
+        Debug.Log("entre falling state");
     }
 
     public override void OnExit()
@@ -25,6 +26,7 @@ public class FallingState : CharacterState
 
     public override bool CanExit()
     {
+        Debug.Log("sortie falling state");
         return true;
     }
 }
