@@ -8,16 +8,16 @@ public class CharacterControlerSM : MonoBehaviour
     private List<CharacterState> m_possibleStates;
     [SerializeField] private CharacterFloorTrigger m_floorTrigger;
     [SerializeField] private StuntZone m_stuntZone;
-   
+
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Rigidbody RB { get; private set; }
     [field: SerializeField] public float m_fowardSpeed { get; private set; }
     [field: SerializeField] public float m_sidewaySpeed { get; private set; }
     [field: SerializeField] public float m_backwardSpeed { get; private set; }
-    [field:SerializeField] public float AccelerationFowardValue { get; private set; }
-    [field:SerializeField] public float AccelerationSideValue { get; private set; }
-    [field:SerializeField] public float MaxVelocity { get; private set; }
-    [field:SerializeField] public float JumpItencity { get; private set; }
+    [field: SerializeField] public float AccelerationFowardValue { get; private set; }
+    [field: SerializeField] public float AccelerationSideValue { get; private set; }
+    [field: SerializeField] public float MaxVelocity { get; private set; }
+    [field: SerializeField] public float JumpItencity { get; private set; }
 
     private void Awake()
     {
@@ -26,6 +26,8 @@ public class CharacterControlerSM : MonoBehaviour
         m_possibleStates.Add(new JumpState());
         m_possibleStates.Add(new HitState());
         m_possibleStates.Add(new FallingState());
+        m_possibleStates.Add(new AttackingState());
+        m_possibleStates.Add(new OnGrondState());
     }
 
     void Start()
@@ -48,7 +50,7 @@ public class CharacterControlerSM : MonoBehaviour
     {
         m_currentState.OnFixedUpdate();
     }
-    private void Trytransition() 
+    private void Trytransition()
     {
         m_currentState.OnUpdate();
         if (!m_currentState.CanExit())
@@ -75,7 +77,7 @@ public class CharacterControlerSM : MonoBehaviour
         return m_floorTrigger.IsOnFloor;
     }
 
-    public bool IsInStuntZone() 
+    public bool IsInStuntZone()
     {
         return m_stuntZone.IsOnStuntZone;
     }
@@ -99,4 +101,15 @@ public class CharacterControlerSM : MonoBehaviour
     {
         Animator.SetTrigger("Hit");
     }
+
+    public void UpdateAnimatorAttacking()
+    {
+        Animator.SetTrigger("Attaking");
+    }
+
+    public void UpdateAnimatorOnGround()
+    {
+        Animator.SetTrigger("OnGround");
+    }        
+        
 }

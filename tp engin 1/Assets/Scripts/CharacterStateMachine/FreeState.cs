@@ -97,6 +97,7 @@ public class FreeState : CharacterState
     {
         var jumpState = currentState as JumpState;
         var hitState = currentState as HitState;
+        var AttackingState = currentState as AttackingState;
         if (jumpState != null)
         {
             //si je suis ici, c est que je suis preetement dans le jump state et test
@@ -104,6 +105,10 @@ public class FreeState : CharacterState
             return m_stateMachine.IsInContactWithFloor();
         }
         if (hitState != null) 
+        {
+            return true;
+        }
+        if (AttackingState != null)
         {
             return true;
         }

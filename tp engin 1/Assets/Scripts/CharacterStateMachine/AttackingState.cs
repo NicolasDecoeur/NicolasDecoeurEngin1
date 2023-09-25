@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class FallingState : CharacterState
+public class AttackingState : CharacterState
 {
-    //float m_initialHeight = 0.0f;
-    //float m_currentHeight = 0.0f;
     public override void OnEnter()
     {
-        Debug.Log("entre falling state");
+        m_stateMachine.UpdateAnimatorAttacking();
+        Debug.Log("entre attacking state");
     }
+
     public override void OnUpdate()
     {
     }
@@ -17,20 +17,20 @@ public class FallingState : CharacterState
 
     public override void OnExit()
     {
-        Debug.Log("sortie falling state");
+        Debug.Log("sortie attacking state");
     }
 
     public override bool CanEnter(CharacterState currentState)
     {
-        //if (Input.GetKeyDown(KeyCode.F)) 
-        //{
-        //    return true;
-        //}
+        if (Input.GetKeyDown(KeyCode.Mouse0)) 
+        {
+            return true;
+        }
         return false;
     }
 
     public override bool CanExit()
-    {
+    {       
         return true;
     }
 }

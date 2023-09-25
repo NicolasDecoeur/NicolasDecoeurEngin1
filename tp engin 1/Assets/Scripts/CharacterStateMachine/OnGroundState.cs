@@ -1,13 +1,14 @@
 using UnityEngine;
-public class HitState : CharacterState
+
+public class OnGrondState : CharacterState
 {
-    private const float STATE_EXIT_TIMER = 5f;
+    private const float STATE_EXIT_TIMER = 2f;
     private float m_currenteStateTimer = 0.0f;
     public override void OnEnter()
     {
-        Debug.Log("entre Hit state");
         m_currenteStateTimer = STATE_EXIT_TIMER;
-        m_stateMachine.UpdateAnimatorHit();
+        m_stateMachine.UpdateAnimatorOnGround();
+        Debug.Log("entre onGround state");
     }
     public override void OnUpdate()
     {
@@ -16,28 +17,29 @@ public class HitState : CharacterState
     public override void OnFixedUpdate()
     {
     }
+
     public override void OnExit()
     {
-        Debug.Log("sortie Hit state");
+        Debug.Log("sortie onGround state");
     }
 
     public override bool CanEnter(CharacterState currentState)
     {
-        //this must be run in update absolutely
-        if (m_stateMachine.IsInStuntZone() == true)
+        if (Input.GetKeyDown(KeyCode.G)) 
         {
             return true;
         }
-
-        return Input.GetKeyDown(KeyCode.H);
+        return false;
     }
+
     public override bool CanExit()
     {
-
         if (m_currenteStateTimer <= 0.0f)
         {
             return true;
         }
         return false;
+  
+        return true;
     }
 }

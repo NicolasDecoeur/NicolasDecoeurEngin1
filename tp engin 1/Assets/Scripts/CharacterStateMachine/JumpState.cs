@@ -17,6 +17,11 @@ public class JumpState : CharacterState
     public override void OnFixedUpdate()
     {
     }
+    public override void OnExit()
+    {
+        Debug.Log("sortie Jump state");
+    }
+
     public override bool CanEnter(CharacterState currentState)
     {
         //this must be run in update absolutely
@@ -30,9 +35,5 @@ public class JumpState : CharacterState
             return false;
         }
         return true;
-    }
-    public override void OnExit()
-    {
-        Debug.Log("sortie Jump state");
     }
 }
