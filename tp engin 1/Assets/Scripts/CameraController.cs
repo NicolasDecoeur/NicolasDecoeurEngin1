@@ -70,8 +70,7 @@ public class CameraController : MonoBehaviour
      }
 
     private void MoveCameraInFrontOfObstructionFUpdate()
-    {
-       
+    {     
         int layerMask = 1 << 8;
 
         RaycastHit hit;
