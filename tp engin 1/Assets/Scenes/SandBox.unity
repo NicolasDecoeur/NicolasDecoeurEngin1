@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 145743811}
   - component: {fileID: 145743810}
   - component: {fileID: 145743809}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,8 +314,8 @@ Transform:
   m_GameObject: {fileID: 145743808}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.769, y: 0.491, z: 5.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.36, y: 0.491, z: 5.68}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 352212014}
   - component: {fileID: 352212013}
   - component: {fileID: 352212012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 30 degre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: 566472400}
   - component: {fileID: 566472399}
   - component: {fileID: 566472398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 50 Degre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +660,7 @@ GameObject:
   - component: {fileID: 694948516}
   - component: {fileID: 694948515}
   - component: {fileID: 694948514}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plafond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -747,7 +747,7 @@ Transform:
   m_GameObject: {fileID: 694948513}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.15, y: 2.3, z: 2.74}
+  m_LocalPosition: {x: -1.7, y: 2.74, z: 2.19}
   m_LocalScale: {x: 2, y: 0.5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -815,7 +815,7 @@ GameObject:
   - component: {fileID: 962867547}
   - component: {fileID: 962867546}
   - component: {fileID: 962867550}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StuntZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,7 +1090,7 @@ GameObject:
   - component: {fileID: 1259043938}
   - component: {fileID: 1259043937}
   - component: {fileID: 1259043936}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 2M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1177,8 +1177,8 @@ Transform:
   m_GameObject: {fileID: 1259043935}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8989999, y: 1.014, z: 5.68}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalPosition: {x: 0.35, y: 1.014, z: 5.68}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1195,7 +1195,7 @@ GameObject:
   - component: {fileID: 1260980697}
   - component: {fileID: 1260980696}
   - component: {fileID: 1260980695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 4M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1282,8 +1282,8 @@ Transform:
   m_GameObject: {fileID: 1260980694}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.33, y: 2.009, z: 5.68}
-  m_LocalScale: {x: 1, y: 4, z: 1}
+  m_LocalPosition: {x: -3.66, y: 2.009, z: 5.68}
+  m_LocalScale: {x: 2, y: 4, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1300,7 +1300,7 @@ GameObject:
   - component: {fileID: 1366012012}
   - component: {fileID: 1366012011}
   - component: {fileID: 1366012010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 40 degre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1456,10 +1456,25 @@ PrefabInstance:
       propertyPath: m_stuntZone
       value: 
       objectReference: {fileID: 962867550}
-    - target: {fileID: 5349285404234648263, guid: 833b6e7b67981a24ca06a9a7ea9b8f16,
+    - target: {fileID: 5026201829464250162, guid: 833b6e7b67981a24ca06a9a7ea9b8f16,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.131
+      propertyPath: <MaxVelocity>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026201829464250162, guid: 833b6e7b67981a24ca06a9a7ea9b8f16,
+        type: 3}
+      propertyPath: <m_fowardSpeed>k__BackingField
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026201829464250162, guid: 833b6e7b67981a24ca06a9a7ea9b8f16,
+        type: 3}
+      propertyPath: <m_sidewaySpeed>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026201829464250162, guid: 833b6e7b67981a24ca06a9a7ea9b8f16,
+        type: 3}
+      propertyPath: <m_backwardSpeed>k__BackingField
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5688629097943994696, guid: 833b6e7b67981a24ca06a9a7ea9b8f16,
         type: 3}
@@ -1483,7 +1498,7 @@ GameObject:
   - component: {fileID: 1658949480}
   - component: {fileID: 1658949479}
   - component: {fileID: 1658949478}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 3M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1570,8 +1585,8 @@ Transform:
   m_GameObject: {fileID: 1658949477}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.095, y: 1.502, z: 5.68}
-  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_LocalPosition: {x: -1.67, y: 1.502, z: 5.68}
+  m_LocalScale: {x: 2, y: 3, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1588,7 +1603,7 @@ GameObject:
   - component: {fileID: 1722167448}
   - component: {fileID: 1722167447}
   - component: {fileID: 1722167446}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 20 degre
   m_TagString: Untagged
   m_Icon: {fileID: 0}

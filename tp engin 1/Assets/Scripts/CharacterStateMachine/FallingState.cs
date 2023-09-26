@@ -14,12 +14,10 @@ public class FallingState : CharacterState
     public override void OnFixedUpdate()
     {
     }
-
     public override void OnExit()
     {
         Debug.Log("sortie falling state");
     }
-
     public override bool CanEnter(CharacterState currentState)
     {
         //if (Input.GetKeyDown(KeyCode.F)) 

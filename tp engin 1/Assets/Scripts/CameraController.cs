@@ -9,13 +9,16 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float m_farthestPointToObject = 10.0f;
     [SerializeField] private float m_smoothSpeed = 0.5f;
     [SerializeField] private float m_rotationSpeed = 1.0f;
+    private bool m_isCameraBlock = false;
 
-    // Update is called once per frame
     void Update()
     {
         UpdateHorizontalMovements();
         UpdateVerticalMovements();
-        UpdateCameraScroll();
+        if (m_isCameraBlock == false)
+        {
+            UpdateCameraScroll();
+        }
     }
 
     private void FixedUpdate()
@@ -68,19 +71,24 @@ public class CameraController : MonoBehaviour
 
     private void MoveCameraInFrontOfObstructionFUpdate()
     {
+       
         int layerMask = 1 << 8;
 
         RaycastHit hit;
 
         var vecteurdiff = transform.position - m_objectToLookAt.position;
         var distance = vecteurdiff.magnitude;
+
         if (Physics.Raycast(m_objectToLookAt.position, vecteurdiff, out hit, distance, layerMask))
         {
+            m_isCameraBlock = true;
             Debug.DrawRay(m_objectToLookAt.position, vecteurdiff.normalized * hit.distance, Color.yellow);
             transform.SetPositionAndRotation(hit.point, transform.rotation);
         }
+
         else
         {
+            m_isCameraBlock = false;
             Debug.DrawRay(m_objectToLookAt.position, vecteurdiff, Color.white);
         }
     }

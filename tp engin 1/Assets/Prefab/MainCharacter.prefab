@@ -1119,7 +1119,7 @@ Transform:
   m_GameObject: {fileID: 1742452315377963428}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.136, z: 0}
+  m_LocalPosition: {x: 0, y: 0.131, z: 0}
   m_LocalScale: {x: 0.27498385, y: 0.2541433, z: 0.28838816}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8390,6 +8390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_floorTrigger: {fileID: 7720938983409268232}
+  m_stuntZone: {fileID: 0}
   <Animator>k__BackingField: {fileID: 1796141387123069463}
   <RB>k__BackingField: {fileID: 3645000581464635417}
   <m_fowardSpeed>k__BackingField: 200
@@ -8398,7 +8399,7 @@ MonoBehaviour:
   <AccelerationFowardValue>k__BackingField: 30
   <AccelerationSideValue>k__BackingField: 30
   <MaxVelocity>k__BackingField: 1
-  <JumpItencity>k__BackingField: 350
+  <JumpItencity>k__BackingField: 75
 --- !u!1 &7013861826673210114
 GameObject:
   m_ObjectHideFlags: 0
@@ -10311,8 +10312,6 @@ MonoBehaviour:
   m_camera: {fileID: 9120744316500251788}
   m_clampingXRotationValues: {x: -20, y: 75}
   m_desiredDistance: 0
-  m_distance: 10
-  m_distanceCamNeedToTravel: 0
   m_closePointToObject: 4
   m_farthestPointToObject: 20
   m_smoothSpeed: 0.005

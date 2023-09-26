@@ -43,7 +43,8 @@ public class CharacterControlerSM : MonoBehaviour
     }
     void Update()
     {
-        Trytransition();
+       Animator.SetBool("TouchGround", IsInContactWithFloor());
+       Trytransition();
     }
 
     void FixedUpdate()
@@ -111,5 +112,4 @@ public class CharacterControlerSM : MonoBehaviour
     {
         Animator.SetTrigger("OnGround");
     }        
-        
 }

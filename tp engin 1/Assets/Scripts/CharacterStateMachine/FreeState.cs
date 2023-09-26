@@ -33,6 +33,7 @@ public class FreeState : CharacterState
         {
             DirectionalVector += Vector3.right;
         }
+
         if (m_stateMachine.RB.velocity.magnitude > m_stateMachine.MaxVelocity)
         {
             m_stateMachine.RB.velocity = m_stateMachine.RB.velocity.normalized;

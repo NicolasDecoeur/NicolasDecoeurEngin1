@@ -39,7 +39,5 @@ public class OnGrondState : CharacterState
             return true;
         }
         return false;
-  
-        return true;
     }
 }
