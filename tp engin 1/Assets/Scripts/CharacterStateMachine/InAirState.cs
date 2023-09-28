@@ -1,17 +1,14 @@
 using UnityEngine;
-public class FreeState : CharacterState
+
+public class InAirState : CharacterState
 {
-    private float DELAY_BETWEEN_STATE = 1.0f;
-    private float m_currentTimer = 0.0f;
-   
+    private float InAirMovementPenality = 0.3f;
     public override void OnEnter()
     {
-        m_currentTimer = DELAY_BETWEEN_STATE;
-        Debug.Log("entre free state");
+        Debug.Log("entre InAir state");
     }
     public override void OnUpdate()
     {
-        m_currentTimer -= Time.deltaTime;
     }
     public override void OnFixedUpdate()
     {
@@ -40,7 +37,7 @@ public class FreeState : CharacterState
             m_stateMachine.RB.velocity *= m_stateMachine.MaxVelocity;
         }
 
-        Vector3 vectorOnFloorForward = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward * DirectionalVector.z, Vector3.up);   
+        Vector3 vectorOnFloorForward = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.forward * DirectionalVector.z, Vector3.up);
         Vector3 vectorOnFloorSideway = Vector3.ProjectOnPlane(m_stateMachine.Camera.transform.right * DirectionalVector.x, Vector3.up);
 
         Vector3 normalizeMovement = Vector3.zero;
@@ -83,41 +80,26 @@ public class FreeState : CharacterState
             NormalizeSpeed = m_stateMachine.m_maxSidewaySpeed;
         }
 
-        m_stateMachine.RB.AddForce(normalizeMovement * NormalizeSpeed, ForceMode.Acceleration);
-
-        m_stateMachine.UpdateAnimatorValues(new Vector2(DirectionalVector.x, DirectionalVector.z));
-
-        //TODO 31 AOÛT:
-        //Lorsqu'aucun input est mis, décélérer le personnage rapidement
+        m_stateMachine.RB.AddForce(normalizeMovement * NormalizeSpeed * InAirMovementPenality, ForceMode.Acceleration);
     }
     public override void OnExit()
     {
-        Debug.Log("sortie free state");
+        Debug.Log("sortie InAir state");
     }
     public override bool CanEnter(CharacterState currentState)
     {
-        var hitState = currentState as HitState;
-        var AttackingState = currentState as AttackingState;
-        var InAirState = currentState as InAirState;
-        if (hitState != null) 
-        {
-            return true;
-        }
-        if (AttackingState != null)
-        {
-            return true;
-        }
-        if (InAirState != null) 
-        { 
-            return true;
+        var jumpState = currentState as JumpState;
+        if (jumpState != null)
+        {        
+            return m_stateMachine.IsInContactWithFloor();
         }
         return false;
     }
     public override bool CanExit()
     {
-        if (m_currentTimer <=0)
-        {
-            return true;
+        if (m_stateMachine.IsInContactWithFloor())
+        { 
+            return true; 
         }
         return false;
     }

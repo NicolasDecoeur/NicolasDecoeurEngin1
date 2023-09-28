@@ -28,6 +28,7 @@ public class CharacterControlerSM : MonoBehaviour
         m_possibleStates.Add(new FallingState());
         m_possibleStates.Add(new AttackingState());
         m_possibleStates.Add(new OnGrondState());
+        m_possibleStates.Add(new InAirState());
     }
 
     void Start()
@@ -87,7 +88,7 @@ public class CharacterControlerSM : MonoBehaviour
     {
         //Aller chercher ma vitesse actuelle
         //Communiquer directement avec mon Animator
-        movementVecValue = new Vector2(movementVecValue.x, movementVecValue.y / MaxVelocity);
+        movementVecValue = new Vector2(movementVecValue.x, movementVecValue.y);
 
         Animator.SetFloat("MoveX", movementVecValue.x);
         Animator.SetFloat("MoveY", movementVecValue.y);
