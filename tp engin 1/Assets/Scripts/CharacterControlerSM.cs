@@ -11,9 +11,9 @@ public class CharacterControlerSM : MonoBehaviour
 
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Rigidbody RB { get; private set; }
-    [field: SerializeField] public float m_fowardSpeed { get; private set; }
-    [field: SerializeField] public float m_sidewaySpeed { get; private set; }
-    [field: SerializeField] public float m_backwardSpeed { get; private set; }
+    [field: SerializeField] public float m_maxFowardSpeed { get; private set; }
+    [field: SerializeField] public float m_maxSidewaySpeed { get; private set; }
+    [field: SerializeField] public float m_maxBackwardSpeed { get; private set; }
     [field: SerializeField] public float AccelerationFowardValue { get; private set; }
     [field: SerializeField] public float AccelerationSideValue { get; private set; }
     [field: SerializeField] public float MaxVelocity { get; private set; }

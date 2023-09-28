@@ -60,27 +60,27 @@ public class FreeState : CharacterState
         {
             if (DirectionalVector.x != 0)
             {
-                NormalizeSpeed = (Mathf.Abs(DirectionalVector.z) * m_stateMachine.m_fowardSpeed) + (Mathf.Abs(DirectionalVector.x) * m_stateMachine.m_sidewaySpeed);
+                NormalizeSpeed = (Mathf.Abs(DirectionalVector.z) * m_stateMachine.m_maxFowardSpeed) + (Mathf.Abs(DirectionalVector.x) * m_stateMachine.m_maxSidewaySpeed);
             }
             else
             {
-                NormalizeSpeed = m_stateMachine.m_fowardSpeed;
+                NormalizeSpeed = m_stateMachine.m_maxFowardSpeed;
             }
         }
         else if (DirectionalVector.z < 0)
         {
             if (DirectionalVector.x != 0)
             {
-                NormalizeSpeed = (Mathf.Abs(DirectionalVector.z) * m_stateMachine.m_backwardSpeed) + (Mathf.Abs(DirectionalVector.x) * m_stateMachine.m_sidewaySpeed);
+                NormalizeSpeed = (Mathf.Abs(DirectionalVector.z) * m_stateMachine.m_maxBackwardSpeed) + (Mathf.Abs(DirectionalVector.x) * m_stateMachine.m_maxSidewaySpeed);
             }
             else
             {
-                NormalizeSpeed = m_stateMachine.m_backwardSpeed;
+                NormalizeSpeed = m_stateMachine.m_maxBackwardSpeed;
             }
         }
         else if (DirectionalVector.x != 0)
         {
-            NormalizeSpeed = m_stateMachine.m_sidewaySpeed;
+            NormalizeSpeed = m_stateMachine.m_maxSidewaySpeed;
         }
 
         m_stateMachine.RB.AddForce(normalizeMovement * NormalizeSpeed, ForceMode.Acceleration);
