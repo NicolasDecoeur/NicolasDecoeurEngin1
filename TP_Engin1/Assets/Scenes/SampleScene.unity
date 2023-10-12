@@ -1403,7 +1403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d422cd6cb49977c4cb951db4588ff89d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hitBox: {fileID: 1377389634831915678}
 --- !u!1 &1054207406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2657,6 +2656,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2613643489010294510, guid: 5e68914ad4560fa4fb0c3949d2efa1bc,
+        type: 3}
+      propertyPath: m_Name
+      value: MCHitBox
+      objectReference: {fileID: 0}
     - target: {fileID: 2613643489010294510, guid: 5e68914ad4560fa4fb0c3949d2efa1bc,
         type: 3}
       propertyPath: m_IsActive

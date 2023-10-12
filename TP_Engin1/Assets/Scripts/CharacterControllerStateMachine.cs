@@ -10,7 +10,7 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
     [field:SerializeField]
     public Animator Animator { get; private set; }
     [SerializeField]
-    public GameObject m_hitBox;
+    protected GameObject m_hitBox;
 
     [field: SerializeField]
     public float InAirAccelerationValue { get; private set; } = 0.2f;
@@ -165,5 +165,10 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
         var oppositeDirectionForceToApply = -RB.velocity *
         DecelerationValue * Time.fixedDeltaTime;
         RB.AddForce(oppositeDirectionForceToApply, ForceMode.Acceleration);
+    }
+
+    public void OnEnableAttackHitbox(bool isEnable = true)
+    {
+        m_hitBox?.SetActive(isEnable);
     }
 }

@@ -2,16 +2,20 @@ using UnityEngine;
 
 public class AnimationEventManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject m_hitBox;
+    private CharacterControllerStateMachine m_stateMachine;
+
+    private void Awake()
+    {
+        m_stateMachine = GetComponent<CharacterControllerStateMachine>();
+    }
 
     public void ActivateHitBox()
     {
-        m_hitBox.SetActive(true);
+        m_stateMachine.OnEnableAttackHitbox(true);
     }
 
     public void DisableHitBox()
     {
-        m_hitBox.SetActive(false);
+        m_stateMachine.OnEnableAttackHitbox(false);
     }
 }

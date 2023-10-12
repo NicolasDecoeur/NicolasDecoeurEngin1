@@ -15,7 +15,7 @@ public class AttackingState : CharacterState
 
     public override void OnExit()
     {
-         m_stateMachine.m_hitBox.SetActive(false);
+        m_stateMachine.OnEnableAttackHitbox(false);
         Debug.Log("Exit state: AttackingState\n");
     }
 
