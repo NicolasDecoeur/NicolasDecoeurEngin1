@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AttackingState : CharacterState
 {
+
     private const float ATTACK_DURATION = 0.6f;
     private float m_currentStateDuration;
     
@@ -14,6 +15,7 @@ public class AttackingState : CharacterState
 
     public override void OnExit()
     {
+         m_stateMachine.m_hitBox.SetActive(false);
         Debug.Log("Exit state: AttackingState\n");
     }
 

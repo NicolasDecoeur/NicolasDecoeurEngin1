@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>, IDamageable
 {
+    public AnimationEventManager m_animationEventManager;
     public Camera Camera { get; private set; }
     [field:SerializeField]
     public Rigidbody RB { get; private set; }
     [field:SerializeField]
     public Animator Animator { get; private set; }
+    [SerializeField]
+    public GameObject m_hitBox;
 
     [field: SerializeField]
     public float InAirAccelerationValue { get; private set; } = 0.2f;
@@ -21,6 +24,7 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
     public float MaxSidewaysVelocity { get; private set; }
     [field: SerializeField]
     public float MaxBackwardVelocity { get; private set; }
+   
     private Vector2 CurrentRelativeVelocity { get; set; }
     public Vector2 CurrentDirectionalInputs { get; private set; }
     public bool OnHitStimuliReceived { get; set; } = false;
@@ -59,7 +63,7 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
     protected override void Update()
     {
         base.Update();
-
+ 
         UpdateAnimatorValues();
     }
 
