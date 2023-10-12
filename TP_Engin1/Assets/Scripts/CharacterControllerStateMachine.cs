@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>, IDamageable
 {
-    public AnimationEventManager m_animationEventManager;
+    public AnimationEventDispatcher m_animationEventDispatcher;
     public Camera Camera { get; private set; }
     [field:SerializeField]
     public Rigidbody RB { get; private set; }

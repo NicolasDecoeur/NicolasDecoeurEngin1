@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AnimationEventManager : MonoBehaviour
+public class AnimationEventDispatcher : MonoBehaviour
 {
     private CharacterControllerStateMachine m_stateMachine;
 
@@ -11,7 +11,7 @@ public class AnimationEventManager : MonoBehaviour
 
     public void ActivateHitBox()
     {
-        m_stateMachine.OnEnableAttackHitbox(true);
+        m_stateMachine.OnEnableAttackHitbox(true);      
     }
 
     public void DisableHitBox()
