@@ -4,39 +4,42 @@ using UnityEngine;
 public class HitBox : MonoBehaviour
 {
     [SerializeField]
-    protected bool m_canBeHit = false;
+    protected bool m_canHit;
     [SerializeField]
-    protected bool m_canHit = false;
+    protected bool m_canReciveHits;
     [SerializeField]
     protected EAgentType m_agentType = EAgentType.Count;
     [SerializeField]
-    protected List<EAgentType> m_affectedAgentType = new List<EAgentType>();
+    protected List<EAgentType> m_affectedAgentTypes = new List<EAgentType>();
 
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
-        var otherHitBox = other.GetComponent<HitBox>();
+        var otherHitBox = other.gameObject.GetComponent<HitBox>();
         if (otherHitBox == null) { return; }
 
-        CanHitOther(otherHitBox);
+        if (CanHitOther(otherHitBox))
+        {
+            VFXManager._Instance.InstantiateVFX(EVFX_TYPE.Hit, other.ClosestPoint(transform.position));
+            otherHitBox.GetHit(this);
+        }
     }
 
     protected bool CanHitOther(HitBox other)
     {
-        return ((m_canHit && other.m_canBeHit) &&
-             (m_affectedAgentType.Contains(other.m_agentType)));
+        return (m_canHit &&
+         other.m_canReciveHits &&
+         m_affectedAgentTypes.Contains(other.m_agentType));
     }
-    
+
     protected void GetHit(HitBox otherHitBox)
     {
-        //debug qui dit qui ses fait fraper 
-        //(gameobject.name)
+        Debug.Log(gameObject.name + " got hit by: " + otherHitBox);
     }
 }
-
 public enum EAgentType
 {
     Ally,
-    Ennemy,
+    Enemy,
     Neutral,
     Count
 }
