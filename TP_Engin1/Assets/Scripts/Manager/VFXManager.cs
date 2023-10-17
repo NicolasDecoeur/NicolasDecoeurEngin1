@@ -16,6 +16,11 @@ public class VFXManager : MonoBehaviour
         if (_Instance == null)
         {
             _Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (_Instance != this)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -24,8 +29,7 @@ public class VFXManager : MonoBehaviour
         switch (vFxType)
         {
             case EVFX_TYPE.Hit:
-                Instantiate(m_hitPS, pos, Quaternion.identity, transform);
-                
+                Instantiate(m_hitPS, pos, Quaternion.identity, transform);                
                 break;
 
             default:
