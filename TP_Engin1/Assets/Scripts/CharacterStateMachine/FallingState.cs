@@ -9,6 +9,7 @@ public class FallingState : CharacterState
 
     public override void OnExit()
     {
+        m_stateMachine.AudioControler.PlaySound(EActionType.Landing);
         Debug.Log("Exit state: FallingState\n");
     }
 

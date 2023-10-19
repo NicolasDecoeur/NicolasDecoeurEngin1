@@ -5,12 +5,15 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
 {
     public AnimationEventDispatcher m_animationEventDispatcher;
     public Camera Camera { get; private set; }
-    [field:SerializeField]
+    [field: SerializeField]
     public Rigidbody RB { get; private set; }
-    [field:SerializeField]
+    [field: SerializeField]
     public Animator Animator { get; private set; }
     [SerializeField]
     protected GameObject m_hitBox;
+
+    [field: SerializeField]
+    public CharacterAudioControler AudioControler { get; private set; }
 
     [field: SerializeField]
     public float InAirAccelerationValue { get; private set; } = 0.2f;
