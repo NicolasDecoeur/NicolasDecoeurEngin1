@@ -4,10 +4,29 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerSM : BaseStateMachine<IState>
 {
+    //public static GameManagerSM _Instance
+    //{
+    //    get;
+    //    protected set;
+    //}
+
     [SerializeField]
     protected Camera m_gameplayCamera;
     [SerializeField]
     protected Camera m_cinematicCamera;
+
+    //protected override void Awake()
+    //{
+    //   if (_Instance == null)
+    //   {
+    //       _Instance = this;
+    //       DontDestroyOnLoad(this);
+    //   }
+    //   else if (_Instance != this)
+    //   {
+    //       Destroy(gameObject);
+    //   }
+    //}
 
     protected override void CreatePossibleStates()
     {

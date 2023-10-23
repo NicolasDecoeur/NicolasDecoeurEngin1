@@ -37,7 +37,6 @@ public abstract class BaseStateMachine<T> : MonoBehaviour where T : IState
 
     }
 
-
     protected void TryStateTransition()
     {
         if (!m_currentState.CanExit())
