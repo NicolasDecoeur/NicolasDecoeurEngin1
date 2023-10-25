@@ -13,7 +13,7 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
     protected GameObject m_hitBox;
 
     [field: SerializeField]
-    public CharacterAudioControler AudioControler { get; private set; }
+    public CharacterEffectControler AudioControler { get; private set; }
 
     [field: SerializeField]
     public float InAirAccelerationValue { get; private set; } = 0.2f;
