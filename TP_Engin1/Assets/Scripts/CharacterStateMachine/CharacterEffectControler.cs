@@ -22,10 +22,11 @@ public class CharacterEffectControler : MonoBehaviour
                 m_AudioSource.clip = clip;
             }
        }
-        foreach (var psystem  in SpecialEffectsSystem[(int)actionType].particleSystems)
-        {
-            psystem?.Play();
-        }
+
+       foreach (var psystem in SpecialEffectsSystem[(int)actionType].particleSystems)
+       {
+           psystem?.Play();
+       }
 
        m_AudioSource.Play();
     }
@@ -33,8 +34,9 @@ public class CharacterEffectControler : MonoBehaviour
 
 public enum EActionType
 {
-    Jump,
+    Jumping,
     Landing,
+    Hiting,
     count
 }
 
@@ -65,7 +67,7 @@ public class CharacterEffectControler : MonoBehaviour
     {
         switch (actionType)
         {
-            case EActionType.Jump:
+            case EActionType.Jumping:
                 m_AudioSource.clip = m_jumpAudioClip;
                 break;
             case EActionType.Landing:
@@ -83,7 +85,7 @@ public class CharacterEffectControler : MonoBehaviour
 
 public enum EActionType
 {
-    Jump,
+    Jumping,
     Landing,
     count
 }
