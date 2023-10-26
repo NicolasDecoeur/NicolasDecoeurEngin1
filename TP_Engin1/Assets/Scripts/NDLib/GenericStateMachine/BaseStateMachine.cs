@@ -4,10 +4,11 @@ using UnityEngine;
 public abstract class BaseStateMachine<T> : MonoBehaviour where T : IState
 {
     protected T m_currentState;
-    protected List<T> m_possibleStates;
+    protected List<T> m_possibleStates = new List<T>();
 
     protected virtual void Awake()
     {
+
         CreatePossibleStates();
     }
 

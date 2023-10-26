@@ -4,33 +4,35 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerSM : BaseStateMachine<IState>
 {
-    //public static GameManagerSM _Instance
-    //{
-    //    get;
-    //    protected set;
-    //}
+    public static GameManagerSM _Instance
+    {
+        get;
+        protected set;
+    }
 
     [SerializeField]
     protected Camera m_gameplayCamera;
     [SerializeField]
     protected Camera m_cinematicCamera;
 
-    //protected override void Awake()
-    //{
-    //   if (_Instance == null)
-    //   {
-    //       _Instance = this;
-    //       DontDestroyOnLoad(this);
-    //   }
-    //   else if (_Instance != this)
-    //   {
-    //       Destroy(gameObject);
-    //   }
-    //}
+    protected override void Awake()
+    {
+        base.Awake();
+       if (_Instance == null)
+       {
+           _Instance = this;
+           DontDestroyOnLoad(this);
+       }
+       else if (_Instance != this)
+       {
+           Destroy(gameObject);
+       }
+    }
 
     protected override void CreatePossibleStates()
     {
-        m_possibleStates = new List<IState>();
+
+        //m_possibleStates = new List<IState>();
         m_possibleStates.Add(new GameplayState(m_gameplayCamera));
         m_possibleStates.Add(new CinematicState(m_cinematicCamera));
     }

@@ -3252,6 +3252,11 @@ PrefabInstance:
       objectReference: {fileID: 1014586072}
     - target: {fileID: 7153897303934577068, guid: 5e68914ad4560fa4fb0c3949d2efa1bc,
         type: 3}
+      propertyPath: m_animationEventDispatcher
+      value: 
+      objectReference: {fileID: 1014586072}
+    - target: {fileID: 7153897303934577068, guid: 5e68914ad4560fa4fb0c3949d2efa1bc,
+        type: 3}
       propertyPath: <AudioControler>k__BackingField
       value: 
       objectReference: {fileID: 1014586077}
