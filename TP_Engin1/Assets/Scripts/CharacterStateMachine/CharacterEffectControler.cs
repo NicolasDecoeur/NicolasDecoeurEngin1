@@ -8,10 +8,6 @@ public class CharacterEffectControler : MonoBehaviour
 
     [SerializeField]
     private AudioSource m_AudioSource;
-    //[SerializeField]
-    //private AudioClip m_jumpAudioClip;
-    //[SerializeField]
-    //private AudioClip m_landingAudioClip;
 
     public void PlaySound(EActionType actionType)
     {
@@ -47,53 +43,3 @@ public struct SpecialEffectsSystem
     public List<AudioClip> audioClips;
     public List<ParticleSystem> particleSystems;
 }
-
-/*using System.Collections.Generic;
-using UnityEngine;
-
-public class CharacterEffectControler : MonoBehaviour
-{
-    [SerializeField]
-    private List<SpecialEffectsSystem> SpecialEffectsSystem = new List<SpecialEffectsSystem>();
-
-    [SerializeField]
-    private AudioSource m_AudioSource;
-    [SerializeField]
-    private AudioClip m_jumpAudioClip;
-    [SerializeField]
-    private AudioClip m_landingAudioClip;
-
-    public void PlaySound(EActionType actionType)
-    {
-        switch (actionType)
-        {
-            case EActionType.Jumping:
-                m_AudioSource.clip = m_jumpAudioClip;
-                break;
-            case EActionType.Landing:
-                m_AudioSource.clip = m_landingAudioClip;
-                break;
-            case EActionType.count:
-                Debug.LogWarning("sound not found or invalide ");
-                break;
-            default:
-                break;
-        }
-        m_AudioSource.Play();
-    }
-}
-
-public enum EActionType
-{
-    Jumping,
-    Landing,
-    count
-}
-
-[System.Serializable]
-public struct SpecialEffectsSystem
-{
-    public EActionType actionType;
-    public List<AudioClip> audioClips;
-    public List<ParticleSystem> particleSystems;
-}*/

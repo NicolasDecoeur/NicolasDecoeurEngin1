@@ -4073,6 +4073,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4395493073395385881, guid: 5e68914ad4560fa4fb0c3949d2efa1bc,
+        type: 3}
+      propertyPath: SpecialEffectsSystem.Array.data[2].audioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
     - target: {fileID: 5008304811103111791, guid: 5e68914ad4560fa4fb0c3949d2efa1bc,
         type: 3}
       propertyPath: m_LocalPosition.x
