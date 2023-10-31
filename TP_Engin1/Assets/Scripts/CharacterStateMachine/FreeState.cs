@@ -69,6 +69,10 @@ public class FreeState : CharacterState
 
     public override bool CanExit()
     {
-        return true;
+        if (m_stateMachine.m_IsInGameplay == true)
+        {
+            return true;
+        }
+        return false;
     }
 }

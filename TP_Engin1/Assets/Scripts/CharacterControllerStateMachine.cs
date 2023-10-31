@@ -39,6 +39,8 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
     [SerializeField]
     private CharacterFloorTrigger m_floorTrigger;
 
+    public bool m_IsInGameplay = false;
+
     protected override void CreatePossibleStates() 
     {
         m_possibleStates = new List<CharacterState>();
@@ -73,9 +75,12 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
     // Update is called once per frame
     protected override void FixedUpdate()
     {
-        SetDirectionalInputs();
-        base.FixedUpdate();
-        Set2dRelativeVelocity();
+        if (m_IsInGameplay == true) 
+        {
+            SetDirectionalInputs();
+            base.FixedUpdate();
+            Set2dRelativeVelocity();
+        }
     }
 
     public bool IsInContactWithFloor()
@@ -173,5 +178,10 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
     public void OnEnableAttackHitbox(bool isEnable = true)
     {
         m_hitBox?.SetActive(isEnable);
+    }
+
+    public void IsInGameplayState(bool state)
+    {
+         m_IsInGameplay = state;
     }
 }

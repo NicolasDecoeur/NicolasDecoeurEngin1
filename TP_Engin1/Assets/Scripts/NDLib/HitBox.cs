@@ -35,6 +35,7 @@ public class HitBox : MonoBehaviour
     {
         Debug.Log(gameObject.name + " got hit by: " + otherHitBox);
     }
+
 }
 public enum EAgentType
 {

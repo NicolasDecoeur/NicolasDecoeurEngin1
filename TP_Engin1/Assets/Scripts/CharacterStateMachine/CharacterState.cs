@@ -9,9 +9,6 @@ public abstract class CharacterState : IState
 
     public virtual void OnStart(CharacterControllerStateMachine stateMachineRef)
     {
-        //TODO: Refactor in progress
-        //Do not forget to call and send the state machine
-        //To characterStates
         m_stateMachine = stateMachineRef;
     }
 
