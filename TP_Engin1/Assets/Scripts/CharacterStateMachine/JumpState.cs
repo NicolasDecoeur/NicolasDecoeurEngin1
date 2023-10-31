@@ -13,7 +13,7 @@ public class JumpState : CharacterState
         m_stateMachine.RB.AddForce(Vector3.up * m_stateMachine.JumpIntensity, ForceMode.Acceleration);
         m_currentStateTimer = STATE_EXIT_TIMER;
         m_stateMachine.Animator.SetTrigger("Jumping");
-        m_stateMachine.AudioControler.PlaySound(EActionType.Jumping);
+        m_stateMachine.AudioControler.SpetialEffectPlayer(EActionType.Jumping);
     }
 
     public override void OnExit()

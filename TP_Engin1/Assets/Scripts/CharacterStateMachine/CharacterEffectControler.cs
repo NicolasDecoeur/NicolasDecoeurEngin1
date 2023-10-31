@@ -9,7 +9,7 @@ public class CharacterEffectControler : MonoBehaviour
     [SerializeField]
     private AudioSource m_AudioSource;
 
-    public void PlaySound(EActionType actionType)
+    public void SpetialEffectPlayer(EActionType actionType)
     {
        foreach (var clip in SpecialEffectsSystem[(int)actionType].audioClips)
        {

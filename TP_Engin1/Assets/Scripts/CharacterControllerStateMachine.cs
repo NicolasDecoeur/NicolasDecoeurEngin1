@@ -39,7 +39,7 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
     [SerializeField]
     private CharacterFloorTrigger m_floorTrigger;
 
-    public bool m_IsInGameplay = false;
+    public bool m_IsInGameplayState = false;
 
     protected override void CreatePossibleStates() 
     {
@@ -75,7 +75,7 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
     // Update is called once per frame
     protected override void FixedUpdate()
     {
-        if (m_IsInGameplay == true) 
+        if (m_IsInGameplayState == true) 
         {
             SetDirectionalInputs();
             base.FixedUpdate();
@@ -182,6 +182,6 @@ public class CharacterControllerStateMachine : BaseStateMachine<CharacterState>,
 
     public void IsInGameplayState(bool state)
     {
-         m_IsInGameplay = state;
+         m_IsInGameplayState = state;
     }
 }
