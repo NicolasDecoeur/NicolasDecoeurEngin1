@@ -3569,7 +3569,7 @@ MonoBehaviour:
   m_canReciveHits: 0
   m_agentType: 0
   m_affectedAgentTypes: 01000000
-  m_slowDownTimeManager: {fileID: 0}
+  m_camera: {fileID: 0}
 --- !u!1 &2648722979423143830
 GameObject:
   m_ObjectHideFlags: 0
@@ -9791,6 +9791,7 @@ MonoBehaviour:
   <MaxBackwardVelocity>k__BackingField: 3
   <JumpIntensity>k__BackingField: 500
   m_floorTrigger: {fileID: 3300000711133119291}
+  m_IsInGameplayState: 0
 --- !u!114 &4395493073395385881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9834,7 +9835,7 @@ MonoBehaviour:
   m_canReciveHits: 1
   m_agentType: 0
   m_affectedAgentTypes: 01000000
-  m_slowDownTimeManager: {fileID: 0}
+  m_camera: {fileID: 0}
 --- !u!1 &7214565244081568417
 GameObject:
   m_ObjectHideFlags: 0

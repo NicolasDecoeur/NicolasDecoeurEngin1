@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ public class HitBox : MonoBehaviour
         {
             VFXManager._Instance.InstantiateVFX(EVFX_TYPE.Hit, other.ClosestPoint(transform.position));
             otherHitBox.GetHit(this);
+            CameraShake._Instance.ShakeOnHit();
         }
     }
 
